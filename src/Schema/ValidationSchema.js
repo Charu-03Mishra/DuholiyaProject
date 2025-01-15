@@ -29,3 +29,14 @@ export const ContactValidation = Yup.object({
 	subject: Yup.string().min(2).max(20).required("Subject Name is Required"),
 	message: Yup.string().min(2).max(100).required("Message is Required"),
 });
+
+export const ProfileDashboardValidation = Yup.object({
+	name: Yup.string().min(2).max(20).required("Name is Required"),
+	lastname: Yup.string().min(2).max(20).required("LastName is Required"),
+	phonenumber: Yup.number().min(10).required("PhoneNumber Is Requried"),
+	email: Yup.string().email().required("Enter the valid Email"),
+	address: Yup.string().min(20).required("Address must be requried"),
+	state: Yup.string().min(2).required("state must be requried"),
+	city: Yup.string().min(2).required("City must be requride"),
+	pincode: Yup.number().min(6).required("Pincode must be requried"),
+});

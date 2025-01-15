@@ -81,13 +81,13 @@ export const Login = () => {
 									value={values.email}
 									icon={<MdMail size={20} />}
 								/>
-								{/* <div>
+								<div>
 									{errors.email && touched.email ? (
 										<p className="form-error text-sm text-red-800">
 											{errors.email}
 										</p>
 									) : null}
-								</div> */}
+								</div>
 								<Input
 									type={isHidden ? "password" : "text"}
 									label={"Password "}

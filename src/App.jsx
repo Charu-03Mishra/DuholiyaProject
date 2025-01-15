@@ -5,6 +5,7 @@ import Footer from "./Layout/Footer/Footer";
 
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import DashBoardNavbar from "./Layout/DashBoardNavbar/DashBoardNavbar";
+import SideNavBarResult from "./Layout/SideNavBarResult/SideNavBarResult";
 
 const App = () => {
 	const path = useLocation();
@@ -18,7 +19,7 @@ const App = () => {
 			{pathname == "/login" ||
 			pathname == "/profile" ||
 			pathname == "/journey" ||
-			pathname === `/journey/assesments/${params.id}` ||
+			pathname == `/journey/assesments/${params.id}` ||
 			pathname == `/journey/assesments/Result/${params.id}` ? (
 				""
 			) : (
