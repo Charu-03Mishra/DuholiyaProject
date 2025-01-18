@@ -35,6 +35,8 @@ export const ProfileDashboardValidation = Yup.object({
 	lastname: Yup.string().min(2).max(20).required("LastName is Required"),
 	phonenumber: Yup.number().min(10).required("PhoneNumber Is Requried"),
 	email: Yup.string().email().required("Enter the valid Email"),
+});
+export const AddressDeshBoardValidation = Yup.object({
 	address: Yup.string().min(20).required("Address must be requried"),
 	state: Yup.string().min(2).required("state must be requried"),
 	city: Yup.string().min(2).required("City must be requride"),

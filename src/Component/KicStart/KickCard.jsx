@@ -24,9 +24,26 @@ const KickCard = () => {
 							/>
 						</div>
 						<div className="px-3 py-2">
-							<Link to={`/journey/assesments/${item.id}`}>
-								<h1 className="text-center text-2xl font-bold">{item.title}</h1>
-							</Link>
+							{item.title.toLowerCase() === "assessment" ? (
+								<Link to={`/journey/${item.title.toLowerCase()}/assessments`}>
+									<h1 className="text-center text-2xl font-bold">
+										{item.title}
+									</h1>
+								</Link>
+							) : item.title.toLowerCase() === "hris" ? (
+								<Link to={`/journey/${item.title.toLowerCase()}/tanent`}>
+									<h1 className="text-center text-2xl font-bold">
+										{item.title}
+									</h1>
+								</Link>
+							) : item.title.toLowerCase() === "users" ? (
+								<Link to={`/journey/${item.title.toLowerCase()}/group`}>
+									<h1 className="text-center text-2xl font-bold">
+										{item.title}
+									</h1>
+								</Link>
+							) : null}
+
 							<p className="text-justify lg:text-lg">{item.data}</p>
 						</div>
 					</div>

@@ -16,9 +16,12 @@ import Profilepages from "./Pages/profilepage/Profilepages.jsx";
 import AssessmentsPage from "./Pages/ProductPage/AssessmentsPage.jsx";
 import KickPage from "./Pages/KickPage/KickPage.jsx";
 import HomePage from "./Pages/HomePage/HomePage.jsx";
-import AssementDashboardPage from "./Pages/AssessmentDashboardPage/AssementDashboardPage.jsx";
 import CorporateHomePage from "./Pages/corporateHomePage/corporateHomePage.jsx";
 import ContactPage from "./Pages/ContactPage/ContactPage.jsx";
+import Tanent from "./Pages/dashboard/tanent/Tanent.jsx";
+import Assesment from "./Pages/dashboard/assesment/Assesment.jsx";
+import Dashboard from "./Pages/dashboard/Dashboard.jsx";
+import User from "./Pages/dashboard/user/User.jsx";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -32,10 +35,10 @@ const router = createBrowserRouter(
 			<Route path="/corporate/:id" element={<CorporateHomePage />} />
 			<Route path="/solution" element={<SolutionPage />} />
 			<Route path="/journey" element={<KickPage />} />
-			<Route
-				path="/journey/assesments/:id"
-				element={<AssementDashboardPage />}
-			/>
+			<Route path="/journey/:id" element={<Dashboard />} />
+			<Route path="/journey/assessment/:name" element={<Assesment />} />
+			<Route path="/journey/hris/:name" element={<Tanent />} />
+			<Route path="/journey/users/:name" element={<User/>} />
 		</Route>
 	)
 );
