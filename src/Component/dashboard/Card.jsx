@@ -3,7 +3,7 @@ import Sidenavbar from "../../Layout/SideNavBar/Sidenavbar";
 import TanentDashBorad from "../../Layout/TanentDashBoardSideNavBar/TanentDashBorad";
 
 const Card = ({ children }) => {
-	return <div className="flex px-8  ">{children}</div>;
+	return <div className="flex px-3 lg:px-8  ">{children}</div>;
 };
 
 export default Card;

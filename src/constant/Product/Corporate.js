@@ -69,6 +69,7 @@ export const CorporateData = [
 		pricingpackage: [
 			{
 				image: "price-tag 1.png",
+				backgroundColor: "#D8F3E9",
 				heading: "Basic Pack",
 				subhadingData: [
 					{
@@ -114,8 +115,10 @@ export const CorporateData = [
 				],
 				price: "$200",
 				button: " #FFFFFF",
+				text: "#003262",
 			},
 			{
+				backgroundColor: "#F3E3F6",
 				image: "price-tag 1.png",
 				heading: "Standard Pack",
 				subhadingData: [
@@ -161,9 +164,11 @@ export const CorporateData = [
 					},
 				],
 				price: "$600",
-				button: "#1591ea",
+				button: "#003262",
+				text: "#FFFFFF",
 			},
 			{
+				backgroundColor: "#F8EBE0",
 				image: "price-tag 1.png",
 				heading: "Premium Pack",
 				subhadingData: [
@@ -210,6 +215,7 @@ export const CorporateData = [
 				],
 				price: "$1200",
 				button: " #FFFFFF",
+				text: "#003262",
 			},
 		],
 	},

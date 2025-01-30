@@ -7,17 +7,22 @@ import { profileValidation } from "../../Schema/ValidationSchema";
 import { useRef, useState } from "react";
 import Input from "../../Component/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { authApi } from "../../mocks/auth";
 
 const InitialProfileData = {
-	usage: "",
-	name: "",
-	phonenumber: "",
+	firstname: "",
+	lastname: "",
+	phone: "",
 	email: "",
-	file: "",
+	dob: "",
+	gender: "",
 };
 
 const Profiles = () => {
+	const [error, seterror] = useState();
 	const nav = useNavigate();
+
 	const {
 		errors,
 		handleBlur,
@@ -29,92 +34,105 @@ const Profiles = () => {
 	} = useFormik({
 		initialValues: InitialProfileData,
 		validationSchema: profileValidation,
-		onSubmit: (value, action) => {
-			nav("/journey");
-			action.resetForm();
+		onSubmit: async (value, action) => {
+			const data = {
+				firstName: value.firstname,
+				middleName: "",
+				lastName: value.lastname,
+				dob: `${value.dob}`,
+				gender: value.gender,
+				email: value.email,
+				phone: `${value.phone}`,
+			};
+
+			const res = await authApi.profile(data);
+			if (res.status === 200) {
+				nav("/journey");
+				action.resetForm();
+			} else {
+				seterror(res);
+			}
 		},
 	});
 
-	const [fileName, setFileName] = useState("");
-	const fileInputRef = useRef();
-
-	const handleButtonClick = () => {
-		fileInputRef.current.click();
-	};
 	return (
 		<>
-			<div className="w-full  flex px-5  ">
-				<div className="grid md:grid-cols-2 mx-auto w-full lg:max-w-5xl ">
-					<div className="w-full bg-purple-200    flex items-center justify-center  overflow-hidden   md:mb-0 border-r-2 border-blue-600 rounded-l-lg rounond">
-						<div className="">
+			<div className=" w-full px-5 py-2 ">
+				<div className="flex justify-center  h-full md:flex-row flex-col w-full ">
+					<div className=" bg-purple-200 md:block hidden    overflow-hidden   md:mb-0   ">
+						<div className="px-5 w-[400px] h-full  flex justify-center ">
 							<img
 								src="/Images/Login/login_bg.png"
 								alt="Contact Animation"
-								className="w-full   rounded-xl"
+								className=" w-[400px] h-[500px]    rounded-xl"
 							/>
 						</div>
 					</div>
-					<div className=" md:px-6 py-4  bg-black">
-						<div className="px-28">
-							<ol class="flex items-center justify-center w-full">
-								<li class="flex w-full items-center text-black dark:text-blue-500 after:content-[''] md:after:w-[200px] after:w-[400px]  after:h-1 after:border-b ">
+					<div className=" py-4 bg-white shadow-xl">
+						<div className="lg:px-16 px-20 ">
+							<ol class="flex items-center justify-between gap-10 w-full">
+								<li class="">
 									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12   shrink-0">
 										1
 									</span>
 								</li>
 								<li class="flex w-full items-center ">
-									<span class="flex items-center justify-center w-10 h-10 bg-blue-500  rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
 										2
+									</span>
+								</li>
+								<li class="flex w-full items-center ">
+									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+										3
 									</span>
 								</li>
 							</ol>
 						</div>
 
-						<div className="mt-2    ">
-							<h1 className="text-center font-bold text-white text-2xl">
+						<div className="mt-2  ">
+							<h1 className="text-center font-bold text-black text-2xl">
 								Profile
 							</h1>
-							<form
-								onSubmit={handleSubmit}
-								className="lg:w-[380px] px-10 lg:px-14">
-								<div className=" ">
-									<label
-										htmlFor="usage"
-										className="text-lg font-medium text-white mt-10 mb-2">
-										Usage By
-									</label>
-									<div className="flex items-center lg:w-[350px] bg-white border-2 border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-500 transition">
-										<select
-											name="usage"
-											id="usage"
-											value={values.usage}
-											onChange={handleChange}
-											onBlur={handleBlur}
-											className="flex-1 text-lg h-12 px-2 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-0">
-											<option value="individual">Individual</option>
-											<option value="educational">Educational</option>
-											<option value="organaizational">Organaizational</option>
-										</select>
-									</div>
-								</div>
+							{error && (
+								<p className="text-red-500 text-xs text-center">{error}</p>
+							)}
+							<form onSubmit={handleSubmit} className=" px-10 lg:px-14">
 								<Input
 									type={"text"}
-									label={"Name "}
-									name={"name"}
+									label={"First Name "}
+									name={"firstname"}
 									id={"name"}
-									placeholder={"Enter the Name"}
+									placeholder={"Enter the First Name"}
 									onChange={handleChange}
 									onBlur={onBlur}
-									value={values.name}
+									value={values.firstname}
 									icon={<FaUserGraduate size={20} />}
 								/>
-								{/* <div>
+								<div>
 									{errors.name && touched.name ? (
 										<p className="form-error text-sm text-red-800">
 											{errors.name}
 										</p>
 									) : null}
-								</div> */}
+								</div>
+								<Input
+									type={"text"}
+									label={"Last Name "}
+									name={"lastname"}
+									id={"lastname"}
+									placeholder={"Enter the Last Name"}
+									onChange={handleChange}
+									onBlur={onBlur}
+									value={values.lastname}
+									icon={<FaUserGraduate size={20} />}
+								/>
+								<div>
+									{errors.lastname && touched.lastname ? (
+										<p className="form-error text-sm text-red-800">
+											{errors.lastname}
+										</p>
+									) : null}
+								</div>
 								<Input
 									type={"email"}
 									label={"Email "}
@@ -126,73 +144,84 @@ const Profiles = () => {
 									value={values.email}
 									icon={<MdMail size={20} />}
 								/>
-								{/* <div>
+								<div>
 									{errors.email && touched.email ? (
 										<p className="form-error text-sm text-red-800">
 											{errors.email}
 										</p>
 									) : null}
-								</div> */}
+								</div>
 								<Input
-									type={"number"}
+									type={"text"}
 									label={"Phone Number "}
-									name={"number"}
-									id={"phonenumber"}
+									name={"phone"}
+									id={"phone"}
 									placeholder={"Enter the Phone Number"}
 									onChange={handleChange}
 									onBlur={onBlur}
-									value={values.phonenumber}
+									value={values.phone}
 									icon={<MdContactPhone size={20} />}
 								/>
-								{/* <div>
-									{errors.phonenumber && touched.phonenumber ? (
+								<div>
+									{errors.phone && touched.phone ? (
 										<p className="form-error text-sm text-red-800">
-											{errors.phonenumber}
+											{errors.phone}
 										</p>
 									) : null}
-								</div> */}
-
-								<div className="pb-2">
-									<label
-										htmlFor="file-upload"
-										className="block text-lg font-medium text-gray-800 mt-5 mb-2">
-										Upload Logo
-									</label>
-									<div className="flex items-center lg:w-[350px] bg-white border border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-500 transition">
-										<div className="flex items-center justify-center px-4 text-gray-600">
-											<FaRegFileImage size={20} />
-										</div>
-										<button
-											type="button"
-											onClick={handleButtonClick}
-											className="flex-1 text-base h-12 px-4 bg-transparent text-gray-800 placeholder-gray-500 focus:outline-none">
-											{fileName || "Attach files"}
-										</button>
-									</div>
-									{/* Hidden file input */}
-									<input
-										type="file"
-										ref={fileInputRef}
-										className="hidden"
-										name="file"
-										value={values.file}
-										onChange={handleChange}
-										onBlur={handleBlur}
-									/>
 								</div>
-								{/* <div>
-									{errors.file && touched.file ? (
-										<p className="form-error text-lg text-red-800">
-											{errors.file}
+								<Input
+									type={"date"}
+									label={"Date Of Birth"}
+									name={"dob"}
+									id={"dob"}
+									placeholder={"Enter the Date of Birth"}
+									onChange={handleChange}
+									onBlur={onBlur}
+									value={values.dob}
+									icon={<MdContactPhone size={20} />}
+								/>
+								<div>
+									{errors.dob && touched.dob ? (
+										<p className="form-error text-sm text-red-800">
+											{errors.dob}
 										</p>
 									) : null}
-								</div> */}
+								</div>
+								<Input
+									type={"text"}
+									label={"Gender"}
+									name={"gender"}
+									id={"dob"}
+									placeholder={"Enter the Date of Birth"}
+									onChange={handleChange}
+									onBlur={onBlur}
+									value={values.gender}
+									icon={<MdContactPhone size={20} />}
+								/>
+								<div>
+									{errors.gender && touched.gender ? (
+										<p className="form-error text-sm text-red-800">
+											{errors.gender}
+										</p>
+									) : null}
+								</div>
 
-								<div className="   p-4 flex justify-center">
+								<div className=" flex justify-center mb-2">
 									<button
 										type="submit"
-										className="w-full py-2 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-black border-2 border-white rounded-lg shadow-md text-base sm:text-xl mt-4 font-bold">
-										Continue as Individual
+										className="px-2 py-2 bg-primary text-white rounded-lg shadow-md text-lg mt-4 ">
+										Continoue as Individual
+									</button>
+								</div>
+								<div className="flex justify-center ">
+									<p className="font-bold text-black text-sm">OR</p>
+								</div>
+
+								<div className=" flex justify-center  mt-2">
+									<button
+										type="button"
+										className=" border-2 border-black justify-center items-center flex gap-2 p-2 bg-primary  text-white rounded-lg shadow-md">
+										Register as Tanent
 									</button>
 								</div>
 							</form>

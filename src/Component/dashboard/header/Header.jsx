@@ -5,7 +5,8 @@ import { LuUsers } from "react-icons/lu";
 import { MdOutlineDashboard } from "react-icons/md";
 import { Link, useParams } from "react-router-dom";
 
-const Header = ({ logo, name }) => {
+const Header = () => {
+	const { name } = useParams();
 	// useEffect
 
 	return (
@@ -38,8 +39,9 @@ const Header = ({ logo, name }) => {
 								md:size={30}
 								className="text-[#003262]"
 							/>
+
 							<h1 className="text-sm sm:text-base md:text-lg text-[#003262] font-bold capitalize ">
-								{name}
+								{`${name}`}
 							</h1>
 						</div>
 					</div>

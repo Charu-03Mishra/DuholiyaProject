@@ -9,26 +9,62 @@ import { MdMail } from "react-icons/md";
 import { MdCorporateFare } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi2";
 import { FiMenu, FiX } from "react-icons/fi";
+import LoginPopUp from "../../Content/Home/LoginPopUp";
+import Contacts from "../../Content/Contact/Contacts";
 
 const Nav = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [openProduct, setopenProduct] = useState(false);
+	const nav = useNavigate();
+	const [login, setLogin] = useState(false);
+	const [contact, setContact] = useState(false);
+
+	const handlerClose = () => {
+		setContact(false);
+		nav("/");
+	};
+	console.log(login);
+
+	let handleLogin = () => {
+		setLogin(true);
+	};
+	let closehandle = () => {
+		setLogin(false);
+		nav("/");
+	};
+	let handleProduct = () => {
+		setopenProduct(!openProduct);
+	};
 
 	return (
 		<>
-			<nav className="w-full z-[10000] mx-auto py-3     px-4  bg-white shadow-md">
+			<nav className="w-full sticky top-0 z-10 overflow-y-scroll max-h-screen  bg-white   mx-auto pb-2  px-4 shadow-md">
 				<div className="flex justify-between items-center">
-					<div className="text-xl font-semibold text-gray-800">
-						<h1>Duholiya</h1>
+					<div className="flex items-center gap-5 ">
+						<div className="lg:hidden block">
+							<button
+								onClick={() => setIsMenuOpen(!isMenuOpen)}
+								className="text-gray-800 text-3xl py-3">
+								<span className=" transition-all duration-1000 ease-in-out ">
+									{isMenuOpen ? <FiX className="" /> : <FiMenu className="" />}
+								</span>
+							</button>
+						</div>
+
+						<div className="text-3xl text-center text-primary">
+							<h1>Duholiya</h1>
+						</div>
 					</div>
-					<div className="flex gap-5 ">
-						<h1 className="font-bold">Sales</h1>
-						<div className="relative group font-bold flex">
+
+					<div className="flex justify-center gap-5 ">
+						<h1 className="">Sales</h1>
+						<div className="relative group  flex ">
 							<p>24 * 7 Support</p>
 
 							<span>
 								<MdOutlineKeyboardArrowDown size={30} />
 							</span>
-							<div className="hidden group-hover:block absolute top-7 right-0 z-10 bg-white text-black w-52 shadow-lg rounded-lg">
+							<div className="hidden  group-hover:block absolute top-7 right-0 z-[1000] bg-white text-black w-52 shadow-lg rounded-lg">
 								<div className=" w-full h-14 px-3 hover:bg-slate-100 transition">
 									<Link
 										to=""
@@ -50,131 +86,163 @@ const Nav = () => {
 				</div>
 
 				{/* Mobile Menu Toggle */}
-				<div className="lg:hidden block">
-					<button
-						onClick={() => setIsMenuOpen(!isMenuOpen)}
-						className="text-gray-800 text-2xl">
-						{isMenuOpen ? <FiX /> : <FiMenu />}
-					</button>
-				</div>
 
 				<div
-					className={`absolute flex lg:justify-end justify-center lg:relative top-20 left-0 lg:top-auto w-full lg:w-auto bg-gray-100 lg:bg-transparent shadow-lg lg:shadow-none transition-all duration-300 ease-in-out ${
-						isMenuOpen ? "block" : "hidden lg:flex"
+					className={`sticky z-50 h-[100vh] bottom-0 top-[72px]   w-72 flex lg:justify-end lg:relative  left-0 lg:top-auto lg:h-10 lg:w-auto bg-white lg:bg-transparent lg:shadow-none   ${
+						isMenuOpen ? "block" : " hidden lg:flex"
 					}`}>
-					<ul className="flex flex-col lg:flex-row lg:text-lg text-2xl gap-8 items-center p-4 lg:p-0">
-						<li>
-							<NavLink
-								to="/"
-								onClick={() => setIsMenuOpen(false)}
-								className={({ isActive }) =>
-									` ${
-										isActive ? "text-orange-700" : "text-black "
-									} hover:text-orange-700 font-bold transition`
-								}>
-								Home
-							</NavLink>
-						</li>
-
-						<div className="relative group">
-							<li className="">
+					<div className={`flex transition-all duration-300 ease-in-out`}>
+						<ul className="flex w-full py-7 flex-col lg:flex-row lg:text-lg text-2xl gap-8 lg:items-center lg:p-0">
+							<li>
 								<NavLink
-									to="/assessment"
+									to="/"
+									onClick={() => {
+										setIsMenuOpen(false);
+										setopenProduct(false);
+										setLogin(false);
+									}}
 									className={({ isActive }) =>
-										` ${
-											isActive ? "text-orange-700" : "text-black "
-										} hover:text-orange-700 font-bold transition flex items-center gap-1 cursor-pointer `
+										`${
+											isActive ? "text-orange-700" : "text-black"
+										} hover:text-orange-700 px-5 lg:px-0 transition`
 									}>
-									Product
-									<MdOutlineKeyboardArrowDown size={20} />
+									Home
 								</NavLink>
 							</li>
-							<div className="hidden group-hover:block absolute top-7 left-0 z-10 bg-gray-800 text-white w-52 shadow-lg rounded-lg">
-								<div className=" w-full h-14 px-3 hover:bg-gray-700 transition">
-									<Link
+
+							<div className="relative ">
+								<li className="flex items-center gap-1">
+									<NavLink
 										onClick={() => setIsMenuOpen(false)}
-										className="flex justify-center3">
-										<LuNotebookPen size={25} className="mt-5" />
-										<span className=" ml-3 mt-5 text-sm font-medium">
-											Assessment Platform
-										</span>
-									</Link>
-								</div>
-								<div className="flex items-center w-full h-12 px-3 hover:bg-gray-700 transition">
-									<MdLibraryBooks size={25} />
-									<span className="ml-3 text-sm font-medium">
-										Assessment Library
+										to="/assessment"
+										className={({ isActive }) =>
+											`${
+												isActive ? "text-orange-700" : "text-black"
+											} hover:text-orange-700 transition flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
+										}>
+										Product
+									</NavLink>
+									<span className="hidden lg:block cursor-pointer">
+										<MdOutlineKeyboardArrowDown
+											onClick={handleProduct}
+											size={20}
+										/>
 									</span>
-								</div>
-								<div className="flex items-center w-full h-12 px-3 hover:bg-gray-700 transition">
-									<TbApiApp size={25} />
-									<span className="ml-3 text-sm font-medium">
-										Assessment API
-									</span>
+								</li>
+								<div
+									className={`${
+										openProduct
+											? "absolute top-7 px-4 py-3 left-0 z-10 hidden lg:block bg-white text-primary w-64 shadow-lg rounded-lg transition-all duration-300 ease-in-out"
+											: "text-primary lg:hidden block  w-72  px-10 py-3"
+									}`}>
+									<div className="flex py-2">
+										<Link
+											onClick={() => setIsMenuOpen(false)}
+											className="flex items-center gap-2">
+											<LuNotebookPen size={20} className="" />
+											<span className="  text-lg font-medium">
+												Assessment Platform
+											</span>
+										</Link>
+									</div>
+									<div className="flex py-2">
+										<Link
+											to="/assessmentslibrary"
+											className="flex items-center gap-2">
+											<MdLibraryBooks size={20} />
+											<span className=" text-lg font-medium">
+												Assessment Library
+											</span>
+										</Link>
+									</div>
+									<div className="flex py-2">
+										<Link to="" className="flex items-center gap-2">
+											<TbApiApp size={20} />
+											<span className="text-lg font-medium">
+												Assessment API
+											</span>
+										</Link>
+									</div>
 								</div>
 							</div>
-						</div>
 
-						<div className="relative group">
-							<NavLink
-								to="/solution"
-								className={({ isActive }) =>
-									` ${
-										isActive ? "text-orange-700" : "text-black "
-									} hover:text-orange-700 font-bold transition flex items-center gap-1 cursor-pointer `
-								}>
-								Solutons
-								<MdOutlineKeyboardArrowDown size={20} />
-							</NavLink>
-							<div className="hidden group-hover:block absolute top-7 left-0 z-10 bg-gray-800 text-white w-52 shadow-lg rounded-xl">
-								<div className="flex items-center w-full h-12 px-3 rounded-lg hover:bg-gray-700 transition">
-									<Link
-										to="/solution"
-										onClick={() => setIsMenuOpen(false)}
-										className="flex justify-center3">
-										<LuNotebookPen size={25} className="mt-5" />
-										<span className=" ml-3 mt-5 text-sm font-medium">
-											Corporate
-										</span>
-									</Link>
-								</div>
-								<div className="flex items-center w-full h-12 px-3 hover:bg-gray-700 transition">
-									<HiAcademicCap size={25} />
-									<span className="ml-3 text-sm font-medium">Academics</span>
+							<div className="relative group">
+								<NavLink
+									to="/solution"
+									className={({ isActive }) =>
+										`${
+											isActive ? "text-orange-700" : "text-black"
+										} hover:text-orange-700 transition flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
+									}>
+									Solutions
+									<MdOutlineKeyboardArrowDown size={20} />
+								</NavLink>
+								<div className="hidden group-hover:block absolute top-7 left-0 z-10 bg-white text-primary w-52 shadow-lg rounded-xl transition-all duration-300 ease-in-out">
+									<div className="flex items-center w-full h-12 px-3 rounded-lg">
+										<Link
+											to="/solution"
+											onClick={() => setIsMenuOpen(false)}
+											className="flex justify-center3">
+											<LuNotebookPen size={25} className="mt-5" />
+											<span className="ml-3 mt-5 text-sm font-medium">
+												Corporate
+											</span>
+										</Link>
+									</div>
+									<div className="flex items-center w-full h-12 px-3">
+										<HiAcademicCap size={25} />
+										<span className="ml-3 text-sm font-medium">Academics</span>
+									</div>
 								</div>
 							</div>
-						</div>
 
-						<li>
-							<NavLink
-								to="/contact"
-								onClick={() => setIsMenuOpen(false)}
-								className={({ isActive }) =>
-									` ${
-										isActive ? "text-orange-700" : "text-black"
-									} hover:text-orange-700 font-bold transition`
-								}>
-								Contact Us
-							</NavLink>
-						</li>
+							<li>
+								<NavLink
+									to={"/?page=contact"}
+									className={({ isActive }) =>
+										`${
+											isActive ? "text-orange-700" : "text-black"
+										} hover:text-orange-700 transition flex items-center gap-1 cursor-pointer px-5 lg:px-0`
+									}>
+									<button
+										onClick={() => {
+											setContact(true);
+										}}
+										className="text-black">
+										Contact
+									</button>
+								</NavLink>
+							</li>
 
-						<li>
-							<NavLink to="/login" onClick={() => setIsMenuOpen(false)}>
-								<button className="px-4 py-2 bg-transparent text-black border-2 rounded-md hover:border-orange-700 hover:text-orange-700 transition">
-									Login
-								</button>
-							</NavLink>
-						</li>
+							<li className="px-5 lg:px-0">
+								<NavLink to={"/?page=login"}>
+									<button
+										onClick={handleLogin}
+										className="px-3 py-2 lg:px-4 lg:py-2 bg-transparent text-black border-2 rounded-md hover:bg-black hover:text-white transition">
+										Login
+									</button>
+								</NavLink>
+							</li>
 
-						<li>
-							<NavLink to="/Demo" onClick={() => setIsMenuOpen(false)}>
-								<button className="px-6 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition">
+							<li className="px-5 lg:px-0">
+								<button className="px-6 py-1 border-2 hidden lg:block border-black text-black rounded-full transition">
 									Request A Demo
 								</button>
-							</NavLink>
-						</li>
-					</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
+
+				{login && (
+					<div className="absolute top-28 left-0 right-0 bottom-0">
+						<LoginPopUp closehandle={closehandle} />
+					</div>
+				)}
+				{contact && (
+					<div className="absolute top-28  left-0 right-0 bottom-0">
+						<Contacts handlerClose={handlerClose} />
+					</div>
+				)}
 			</nav>
 		</>
 	);

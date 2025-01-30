@@ -1,19 +1,24 @@
 import * as Yup from "yup";
 
-export const loginValidation = Yup.object({
+export const Registrationvalidation = Yup.object({
 	email: Yup.string().email().required("Enter the valid Email"),
 	password: Yup.string().min(6).max(20).required("password atleast 6 word "),
 	confirmpassword: Yup.string()
 		.required()
 		.oneOf([Yup.ref("password"), null], "Password must match"),
 });
+export const loginValidation = Yup.object({
+	email: Yup.string().email().required("Enter the valid Email"),
+	password: Yup.string().min(6).max(20).required("password atleast 6 word "),
+});
 
 export const profileValidation = Yup.object({
-	name: Yup.string().min(2).max(20).required("Name is Required"),
-	phonenumber: Yup.number().min(10).max(13).required("PhoneNumber Is Requried"),
+	firstname: Yup.string().min(2).max(20).required("Name is Required"),
+	lastname: Yup.string().min(2).max(20).required("Last Name is Required"),
+	phone: Yup.number().min(10).required("PhoneNumber Is Requried"),
 	email: Yup.string().email().required("Enter the valid Email"),
-	usage: Yup.string(),
-	file: Yup.string().required("file must be uploded"),
+	dob: Yup.date(),
+	gender: Yup.string(),
 });
 
 export const RequestValidation = Yup.object({

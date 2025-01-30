@@ -26,25 +26,27 @@ const KickCard = () => {
 						<div className="px-3 py-2">
 							{item.title.toLowerCase() === "assessment" ? (
 								<Link to={`/journey/${item.title.toLowerCase()}/assessments`}>
-									<h1 className="text-center text-2xl font-bold">
+									<h1 className="text-center inter  text-primary text-2xl font-bold">
 										{item.title}
 									</h1>
 								</Link>
 							) : item.title.toLowerCase() === "hris" ? (
 								<Link to={`/journey/${item.title.toLowerCase()}/tanent`}>
-									<h1 className="text-center text-2xl font-bold">
+									<h1 className="text-center font-bold  text-primary text-2xl inter">
 										{item.title}
 									</h1>
 								</Link>
 							) : item.title.toLowerCase() === "users" ? (
 								<Link to={`/journey/${item.title.toLowerCase()}/group`}>
-									<h1 className="text-center text-2xl font-bold">
+									<h1 className="text-center text-primary font-bold text-2xl inter">
 										{item.title}
 									</h1>
 								</Link>
 							) : null}
 
-							<p className="text-justify lg:text-lg">{item.data}</p>
+							<p className="text-justify lg:text-xl inter text-gray-600">
+								{item.data}
+							</p>
 						</div>
 					</div>
 				))}

@@ -33,11 +33,11 @@ const Department = () => {
 	console.log(departmentdata);
 	return (
 		<>
-			<Card >
+			<Card>
 				<TanentDashBorad />
-				<div className=" w-full max-h-screen overflow-y-scroll px-3 py-5 border-l-2 border-blue-600 bg-white ">
+				<div className=" w-full  max-h-screen overflow-y-scroll lg:px-3 py-5 border-l-2 border-blue-600  ">
 					<div className="px-4">
-						<h1 className="font-bold text-lg">Department Module</h1>
+						<h1 className="font-bold text-lg text-justify">Department Module</h1>
 						<p>
 							Manage and organize group effortlessly. Create, Join or maderate
 							position based on your preference and objectives.

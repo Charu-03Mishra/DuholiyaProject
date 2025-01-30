@@ -35,12 +35,12 @@ const TanentData = () => {
 		<>
 			<Card>
 				<TanentDashBorad />
-				<div className=" w-full max-h-screen overflow-y-scroll px-3 py-5 border-l-2 border-blue-600 bg-white ">
+				<div className="w-full max-h-screen overflow-y-scroll px-3 py-5 border-l-2 border-blue-600 bg-white">
 					<div className="px-4">
-						<h1 className="font-bold text-lg">Profile Deatils</h1>
+						<h1 className="font-bold text-lg">Profile Details</h1>
 						<p>
-							Manage and organize group effortlessly. Create, Join or maderate
-							position based on your preference and objectives.
+							Manage and organize groups effortlessly. Create, Join or moderate
+							positions based on your preferences and objectives.
 						</p>
 					</div>
 					<div className="my-8 rounded-lg shadow-xl shadow-gray-400 bg-white">
@@ -56,10 +56,10 @@ const TanentData = () => {
 							</button>
 						</div>
 
-						<div className="mx-auto px-5 py-5 md:px-20 md:py-10">
+						<div className=" px-8 py-5  md:px-10 md:py-10">
 							<form onSubmit={handleSubmit}>
-								<div className="flex flex-col gap-6 lg:flex-row lg:flex-wrap lg:items-start">
-									<div className="flex-1 min-w-[250px]">
+								<div className="flex flex-col  flex-wrap gap-6 lg:flex-row lg:flex-wrap lg:items-start">
+									<div className=" lg:w-[410px] w-[400px]">
 										<label
 											htmlFor="name"
 											className="block text-sm md:text-base font-medium mb-1">
@@ -79,7 +79,7 @@ const TanentData = () => {
 										)}
 									</div>
 
-									<div className="flex-1 min-w-[250px]">
+									<div className=" w-[410px]">
 										<label
 											htmlFor="lastname"
 											className="block text-sm md:text-base font-medium mb-1">
@@ -101,7 +101,7 @@ const TanentData = () => {
 										)}
 									</div>
 
-									<div className="flex-1 min-w-[250px]">
+									<div className="w-[410px]">
 										<label
 											htmlFor="email"
 											className="block text-sm md:text-base font-medium mb-1">
@@ -123,7 +123,7 @@ const TanentData = () => {
 										)}
 									</div>
 
-									<div className="flex-1 min-w-[250px]">
+									<div className="w-[410px]">
 										<label
 											htmlFor="phonenumber"
 											className="block text-sm md:text-base font-medium mb-1">

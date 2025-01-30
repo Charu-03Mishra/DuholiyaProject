@@ -1,155 +1,150 @@
 import React, { useState } from "react";
-import { MdContactPhone, MdMail } from "react-icons/md";
-import { TbLockPassword } from "react-icons/tb";
-import { GoEyeClosed } from "react-icons/go";
-import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
-import { RxEyeOpen } from "react-icons/rx";
-import { useFormik } from "formik";
 import { loginValidation } from "../../Schema/ValidationSchema";
+import { useFormik } from "formik";
 import Input from "../../Component/Input/Input";
+import { TbLockPassword } from "react-icons/tb";
+import { MdMail } from "react-icons/md";
+import { FaGoogle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { authApi } from "../../mocks/auth";
 
 const initialValues = {
 	email: "",
 	password: "",
-	confirmpassword: "",
 };
 
-export const Login = () => {
-	const [isHidden, setIsHidden] = useState(true);
-
-	const handletoggle = () => {
-		setIsHidden((prev) => !prev);
-	};
-	const icons = isHidden ? <GoEyeClosed /> : <RxEyeOpen />;
-	const [register, setRegister] = useState("register");
+const Login = () => {
 	const nav = useNavigate();
-
+	const [error, setError] = useState("");
 	const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
 		useFormik({
 			initialValues: initialValues,
 			validationSchema: loginValidation,
-			onSubmit: (values, action) => {
-				setRegister("profile");
-				nav("/profile");
-				action.resetForm();
+			onSubmit: async (value, action) => {
+				const data = {
+					userName: value.email,
+					password: value.password,
+				};
+
+				const res = await authApi.login(data);
+				if (res.status === 200) {
+					
+					alert("Login sucessfully ");
+					nav("/profile");
+					action.resetForm();
+				}
+				else{
+                    setError(res)
+                }
 			},
 		});
-
 	return (
-		<>
-			<div className="w-full  flex px-5  ">
-				<div className="grid md:grid-cols-2 mx-auto w-full lg:max-w-5xl ">
-					<div className="w-full bg-purple-200    flex items-center justify-center  overflow-hidden   md:mb-0 border-r-2 border-blue-600 rounded-l-lg rounond">
-						<div className="">
-							<img
-								src="/Images/Login/register.png"
-								alt="Contact Animation"
-								className="w-full   rounded-xl"
-							/>
-						</div>
+		<div className=" flex   items-center justify-center bg-opacity-50">
+			<div className="flex   flex-col md:flex-row justify-center  shadow-lg overflow-hidden shadow-gray-400    rounded-lg">
+				<div className="w-[450px] hidden md:block md:w-[400px] shadow-lg bg-blue-500">
+					<img className="  " src="/Images/Home/login@4x.png" alt="Login" />
+				</div>
+
+				<div className="w-[450px] py-3 md:px-5 bg-white px-5 ">
+					<div className="lg:px-16 px-20 ">
+						<ol class="flex items-center justify-between gap-10 w-full">
+							<li class="">
+								<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12   shrink-0">
+									1
+								</span>
+							</li>
+							<li class="flex w-full items-center ">
+								<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+									2
+								</span>
+							</li>
+							<li class="flex w-full items-center ">
+								<span class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+									3
+								</span>
+							</li>
+						</ol>
 					</div>
-					<div className=" md:px-6 py-4  bg-black">
-						<div className="px-28">
-							<ol class="flex items-center justify-center w-full">
-								<li class="flex w-full items-center text-black dark:text-blue-500 after:content-[''] md:after:w-[200px] after:w-[400px]  after:h-1 after:border-b ">
-									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12   shrink-0">
-										1
-									</span>
-								</li>
-								<li class="flex w-full items-center ">
-									<span class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-										2
-									</span>
-								</li>
-							</ol>
-						</div>
-
-						<div className="mt-2    ">
-							<h1 className="text-center font-bold text-white text-2xl">
-								Register
-							</h1>
-							<form onSubmit={handleSubmit} className=" px-10 lg:px-14">
-								<Input
-									type={"email"}
-									label={"Email "}
-									name={"email"}
-									id={"email"}
-									placeholder={"Enter the email"}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.email}
-									icon={<MdMail size={20} />}
+					<h1 className="text-center font-bold text-black text-2xl">Login</h1>
+					{error && (
+						<p className=" text-red-600 text-lg text-center py-4">{error}</p>
+					)}
+					<div>
+						<h1 className="text-center text-lg">Login to Your Account</h1>
+						<p className="text-center text-sm pt-1">
+							Don't have an account?{" "}
+							<span className="text-primary">Sign Up for Free !!</span>
+						</p>
+					</div>
+					<div className="flex justify-center">
+						<form
+							onSubmit={handleSubmit}
+							className="px-3 md:px-5 w-[450px] md:w-full  ">
+							<Input
+								type="email"
+								label="Email "
+								name="email"
+								id="email"
+								placeholder="Enter your email"
+								icon={<MdMail size={20} />}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.email}
+							/>
+							<div>
+								{errors.email && touched.email ? (
+									<p className="form-error text-sm text-red-800">
+										{errors.email}
+									</p>
+								) : null}
+							</div>
+							<Input
+								label="Password "
+								name="password"
+								type="password"
+								id="password"
+								placeholder="Enter your password"
+								icon={<TbLockPassword size={20} />}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								value={values.password}
+							/>
+							<div>
+								{errors.password && touched.password ? (
+									<p className="form-error text-sm text-red-800">
+										{errors.password}
+									</p>
+								) : null}
+							</div>
+							<div className="flex text-sm justify-end">
+								<Link>Forget Password?</Link>
+							</div>
+							<div className="">
+								<input
+									type="checkbox"
+									id="check"
+									name="check"
+									value="CheckBox"
+									className="w-[17px] h-[12px]"
 								/>
-								<div>
-									{errors.email && touched.email ? (
-										<p className="form-error text-sm text-red-800">
-											{errors.email}
-										</p>
-									) : null}
-								</div>
-								<Input
-									type={isHidden ? "password" : "text"}
-									label={"Password "}
-									name={"password"}
-									id={"phonenumber"}
-									placeholder={"Enter the Password"}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.password}
-									icon={<TbLockPassword size={20} />}
-									icon2={icons}
-									onClick={handletoggle}
-								/>
-
-								{/* <div>
-									{errors.phonenumber && touched.phonenumber ? (
-										<p className="form-error text-sm text-red-800">
-											{errors.phonenumber}
-										</p>
-									) : null}
-								</div> */}
-								<div className="flex justify-end">
-									<Link>Forget Password</Link>
-								</div>
-								<Input
-									type={"password"}
-									label={"Confirm Password "}
-									name={"confirmpassword"}
-									id={"confirmpasswaord"}
-									placeholder={"*********"}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									value={values.confirmpassword}
-									icon={<TbLockPassword size={20} />}
-								/>
-								<div className=" sm:mx-12  p-4 flex justify-center">
+								<label htmlFor="check" className="text-sm">
+									{" "}
+									I agree to the Terms & Conditions
+								</label>
+								<div className=" flex justify-center mb-2">
 									<button
 										type="submit"
-										className="w-full py-2 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-black border-2 border-white rounded-lg shadow-md text-base sm:text-xl mt-4 font-bold">
-										Sign Up
+										className="px-8 py-2 bg-primary text-white rounded-lg shadow-md text-xl mt-4 ">
+										Login
 									</button>
 								</div>
-								<div className="flex justify-center mt-2">
-									<p className="font-bold text-white text-sm sm:text-lg">OR</p>
-								</div>
-								<div className="flex justify-center sm:mx-10 mt-3 mb-6 bg-blue-700 border-2 border-white rounded-lg">
-									<div className="mt-4 sm:mt-6 text-white">
-										<FaGoogle size={20} />
-									</div>
-									<div className="flex justify-center">
-										<button
-											type=""
-											className="py-2 sm:py-3 pl-2 text-black font-bold rounded-lg shadow-md text-base sm:text-xl mt-1 sm:mt-2">
-											Sign Up With Google
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
+
+export default Login;

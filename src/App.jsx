@@ -10,8 +10,7 @@ import SideNavBarResult from "./Layout/SideNavBarResult/SideNavBarResult";
 const App = () => {
 	const path = useLocation();
 	const pathname = path.pathname;
-	const { name } = useParams();
-	console.log(name);
+	
 
 	return (
 		<>
@@ -23,7 +22,8 @@ const App = () => {
 			pathname == `/journey/hris` ||
 			pathname == `/journey/hris/${name}` ||
 			pathname == `/journey/users` ||
-			pathname == `/journey/users/${name}` ? (
+			pathname == `/journey/users/${name}` ||
+			pathname == `/journey/assissment/assessments/${name}` ? (
 				""
 			) : (
 				<Nav />
@@ -34,7 +34,8 @@ const App = () => {
 			pathname == `/journey/hris` ||
 			pathname == `/journey/hris/${name}` ||
 			pathname == `/journey/users` ||
-			pathname == `/journey/users/${name}` ? (
+			pathname == `/journey/users/${name}` ||
+			pathname == `/journey/assissment/assessments/${name}` ? (
 				<DashBoardNavbar />
 			) : (
 				""
@@ -49,7 +50,8 @@ const App = () => {
 			pathname == `/journey/hris` ||
 			pathname == `/journey/hris/${name}` ||
 			pathname == `/journey/users` ||
-			pathname == `/journey/users/${name}` ? (
+			pathname == `/journey/users/${name}` ||
+			pathname == `/journey/assissment/assessments/${name}` ? (
 				""
 			) : (
 				<Footer />

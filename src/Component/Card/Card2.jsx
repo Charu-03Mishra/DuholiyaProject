@@ -23,7 +23,7 @@ const Card2 = () => {
 				</p>
 			</div>
 			<div className=" flex justify-center mt-6">
-				<button className="inline-flex items-center px-5 py-2 text-sm md:text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 whitespace-nowrap dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+				<button className="inline-flex items-center px-5 py-2 text-sm md:text-lg font-medium text-center text-primary bg-white rounded-lg hover:bg-secondary focus:ring-4 focus:outline-none focus:ring-blue-300 whitespace-nowrap border-2 border-primary">
 					E Book
 					<span className="ml-3">
 						<FaArrowDown />

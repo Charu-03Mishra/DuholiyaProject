@@ -1,11 +1,12 @@
-export const Logo = (Icon, color) => {
+export const Logo = (Icon, color, size) => {
 	console.log(color);
 
 	return (
 		<Icon
-			className={` text-2xl`}
+			className={` text-lg`}
 			style={{
 				color: color,
+				size: size,
 			}}
 		/>
 	);
