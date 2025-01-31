@@ -8,19 +8,9 @@ const Page2 = () => {
 				<motion.div
 					initial={{ opacity: 0, translateX: "-50%" }}
 					whileInView={{ opacity: 1, translateX: 0 }}
-					exit={{
-						translateX: "50%",
-						opacity: 0,
-						transition: {
-							duration: 0.25,
-							delay: 2,
-							ease: "easeIn",
-						},
-					}}
 					transition={{
-						duration: 2,
+						duration: 0.75,
 						delay: 0.5,
-						ease: "easeInOut",
 					}}
 					className="w-full md:w-1/2 text-center md:text-left">
 					<h1 className="text-4xl md:text-4xl lg:text-5xl font-semibold text-primary leading-tight">

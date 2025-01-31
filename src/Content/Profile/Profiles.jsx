@@ -9,6 +9,8 @@ import Input from "../../Component/Input/Input";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { authApi } from "../../mocks/auth";
+import { BsGenderFemale } from "react-icons/bs";
+import { CgCalendarDates } from "react-icons/cg";
 
 const InitialProfileData = {
 	firstname: "",
@@ -57,34 +59,40 @@ const Profiles = () => {
 
 	return (
 		<>
-			<div className=" w-full px-5 py-2 ">
-				<div className="flex justify-center  h-full md:flex-row flex-col w-full ">
-					<div className=" bg-purple-200 md:block hidden    overflow-hidden   md:mb-0   ">
-						<div className="px-5 w-[400px] h-full  flex justify-center ">
+			<div className=" flex justify-center  min-h-screen w-full px-5  ">
+				<div className="flex justify-center   min-h-screen md:flex-row flex-col  ">
+					<div className=" bg-purple-200 md:block hidden w-2/4  overflow-hidden     ">
+						<div className="px-5 md:w-[400px] w-[300px] h-full  flex justify-center ">
 							<img
 								src="/Images/Login/login_bg.png"
 								alt="Contact Animation"
-								className=" w-[400px] h-[500px]    rounded-xl"
+								className=" w-[400px]  h-[600px]   rounded-xl"
 							/>
 						</div>
 					</div>
-					<div className=" py-4 bg-white shadow-xl">
-						<div className="lg:px-16 px-20 ">
-							<ol class="flex items-center justify-between gap-10 w-full">
-								<li class="">
-									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12   shrink-0">
-										1
-									</span>
+					<div className=" w-[300px] md:w-[400px] bg-white shadow-xl">
+						<div className="flex justify-center py-2   ">
+							<ol class="flex items-center ">
+								<li class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] md:after:w-28 after:w-12 after:h-1 after:border-b after:border-blue-500 after:border-4 after:inline-block dark:after:border-blue-800">
+									<Link to={"/register"}>
+										<span class="flex items-center justify-center w-6 h-6 bg-primary text-white rounded-full md:h-8 md:w-8 dark:bg-blue-800 shrink-0">
+											1
+										</span>
+									</Link>
 								</li>
-								<li class="flex w-full items-center ">
-									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-										2
-									</span>
+								<li class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] md:after:w-28 after:w-12 after:h-1 after:border-b after:border-blue-500 after:border-4 after:inline-block dark:after:border-blue-800">
+									<Link to={"/login"}>
+										<span class="flex items-center justify-center w-6 h-6 bg-primary text-white rounded-full md:h-8 md:w-8 dark:bg-gray-700 shrink-0">
+											2
+										</span>
+									</Link>
 								</li>
-								<li class="flex w-full items-center ">
-									<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-										3
-									</span>
+								<li class="flex items-center w-full">
+									<Link to={"/profile"}>
+										<span class="flex items-center justify-center w-6 h-6 bg-primary text-white rounded-full md:h-8 md:w-8 dark:bg-gray-700 shrink-0">
+											3
+										</span>
+									</Link>
 								</li>
 							</ol>
 						</div>
@@ -178,7 +186,7 @@ const Profiles = () => {
 									onChange={handleChange}
 									onBlur={onBlur}
 									value={values.dob}
-									icon={<MdContactPhone size={20} />}
+									icon={<CgCalendarDates size={20} />}
 								/>
 								<div>
 									{errors.dob && touched.dob ? (
@@ -191,12 +199,11 @@ const Profiles = () => {
 									type={"text"}
 									label={"Gender"}
 									name={"gender"}
-									id={"dob"}
-									placeholder={"Enter the Date of Birth"}
+									id={"gender"}
 									onChange={handleChange}
 									onBlur={onBlur}
 									value={values.gender}
-									icon={<MdContactPhone size={20} />}
+									icon={<BsGenderFemale size={20} />}
 								/>
 								<div>
 									{errors.gender && touched.gender ? (
@@ -209,7 +216,7 @@ const Profiles = () => {
 								<div className=" flex justify-center mb-2">
 									<button
 										type="submit"
-										className="px-2 py-2 bg-primary text-white rounded-lg shadow-md text-lg mt-4 ">
+										className="px-2 py-2 border-2 border-black bg-primary text-white rounded-lg shadow-md text-sm mt-4 ">
 										Continoue as Individual
 									</button>
 								</div>
@@ -217,10 +224,10 @@ const Profiles = () => {
 									<p className="font-bold text-black text-sm">OR</p>
 								</div>
 
-								<div className=" flex justify-center  mt-2">
+								<div className=" flex justify-center pb-4 mt-2">
 									<button
 										type="button"
-										className=" border-2 border-black justify-center items-center flex gap-2 p-2 bg-primary  text-white rounded-lg shadow-md">
+										className=" border-2 border-black text-sm justify-center items-center flex gap-2 p-2 bg-primary  text-white rounded-lg shadow-md">
 										Register as Tanent
 									</button>
 								</div>

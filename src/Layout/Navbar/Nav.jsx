@@ -38,7 +38,7 @@ const Nav = () => {
 
 	return (
 		<>
-			<nav className="w-full sticky top-0 z-10 overflow-y-scroll max-h-screen  bg-white   mx-auto pb-2  px-4 shadow-md">
+			<nav className="w-full sticky top-0 z-[100000] overflow-y-scroll max-h-screen  bg-white  mx-auto pb-2  px-4 shadow-md">
 				<div className="flex justify-between items-center">
 					<div className="flex items-center gap-5 ">
 						<div className="lg:hidden block">
@@ -64,7 +64,7 @@ const Nav = () => {
 							<span>
 								<MdOutlineKeyboardArrowDown size={30} />
 							</span>
-							<div className="hidden  group-hover:block absolute top-7 right-0 z-[1000] bg-white text-black w-52 shadow-lg rounded-lg">
+							<div className="hidden  group-hover:block absolute top-5 right-0 z-[1000] bg-purple-400 text-black w-52 shadow-lg rounded-lg">
 								<div className=" w-full h-14 px-3 hover:bg-slate-100 transition">
 									<Link
 										to=""
@@ -103,8 +103,8 @@ const Nav = () => {
 									}}
 									className={({ isActive }) =>
 										`${
-											isActive ? "text-orange-700" : "text-black"
-										} hover:text-orange-700 px-5 lg:px-0 transition`
+											isActive ? "text-primary font-bold" : "text-black"
+										}  px-5 lg:px-0 transition`
 									}>
 									Home
 								</NavLink>
@@ -117,8 +117,8 @@ const Nav = () => {
 										to="/assessment"
 										className={({ isActive }) =>
 											`${
-												isActive ? "text-orange-700" : "text-black"
-											} hover:text-orange-700 transition flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
+												isActive ? "text-primary font-bold" : "text-black"
+											} flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
 										}>
 										Product
 									</NavLink>
@@ -171,8 +171,8 @@ const Nav = () => {
 									to="/solution"
 									className={({ isActive }) =>
 										`${
-											isActive ? "text-orange-700" : "text-black"
-										} hover:text-orange-700 transition flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
+											isActive ? "text-primary font-bold" : "text-black"
+										}  flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
 									}>
 									Solutions
 									<MdOutlineKeyboardArrowDown size={20} />
@@ -198,36 +198,36 @@ const Nav = () => {
 
 							<li>
 								<NavLink
-									to={"/?page=contact"}
+									to={"/contact"}
 									className={({ isActive }) =>
 										`${
-											isActive ? "text-orange-700" : "text-black"
-										} hover:text-orange-700 transition flex items-center gap-1 cursor-pointer px-5 lg:px-0`
+											isActive ? "text-primary font-bold" : "text-black"
+										}  cursor-pointer px-5 lg:px-0`
 									}>
-									<button
-										onClick={() => {
-											setContact(true);
-										}}
-										className="text-black">
-										Contact
-									</button>
+									Contact
 								</NavLink>
 							</li>
 
 							<li className="px-5 lg:px-0">
-								<NavLink to={"/?page=login"}>
-									<button
-										onClick={handleLogin}
-										className="px-3 py-2 lg:px-4 lg:py-2 bg-transparent text-black border-2 rounded-md hover:bg-black hover:text-white transition">
+								<NavLink to={"/login"}>
+									<button className="px-3 py-2 lg:px-4 lg:py-2 bg-transparent text-black border-2 rounded-md hover:bg-black hover:text-white transition">
 										Login
 									</button>
 								</NavLink>
 							</li>
 
 							<li className="px-5 lg:px-0">
-								<button className="px-6 py-1 border-2 hidden lg:block border-black text-black rounded-full transition">
-									Request A Demo
-								</button>
+								<NavLink
+									to={"/requestdemo"}
+									className={({ isActive }) =>
+										`${
+											isActive ? "text-primary font-bold" : "text-black"
+										}  cursor-pointer px-5 lg:px-0`
+									}>
+									<button className="px-6 py-1 border-2 hidden lg:block border-black  rounded-full transition">
+										Request A Demo
+									</button>
+								</NavLink>
 							</li>
 						</ul>
 					</div>

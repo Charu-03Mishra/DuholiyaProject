@@ -14,37 +14,31 @@ const VideoResponses = () => {
 	return (
 		<>
 			<div className="">
-				<div className="grid lg:grid-cols-2 px-5  gap-4 md:px-28  mt-10">
+				<div className="grid lg:grid-cols-2 px-5  gap-4 md:px-20  mt-10">
 					<motion.div
 						initial={{ opacity: 0, translateX: "-50%" }}
 						whileInView={{ opacity: 1, translateX: 0 }}
-						exit={{
-							translateX: "50%",
-							opacity: 0,
-							transition: {
-								duration: 0.25,
-								delay: 2,
-								ease: "easeIn",
-							},
-						}}
+						
 						transition={{
-							duration: 2,
+							duration: .75,
 							delay: 0.5,
 							ease: "easeInOut",
 						}}>
 						<div className="  pt-5 ">
-							<h1 className="lg:text-xl   font-bold">{videoData.heading}</h1>
-							<p className="text-lg pt-2 mb-3  text-justify ">
+							<h1 className="lg:text-3xl text-justify text-[#3A3A3A] font-bold">
+								{videoData.heading}
+							</h1>
+							<p className="text-xs mb-3 pt-2 text-[#545454] text-justify ">
 								{videoData.description}
 							</p>
 							<div className="">
 								{videoData.subhadingData.map((item, i) => (
-									<div key={i} className="flex">
-										<div className="mt-2 text-blue-950">
+									<div key={i} className="flex gap-3 items-center">
+										<div className="mt-2 text-primary">
 											<IoIosCheckmarkCircle size={25} />
 										</div>
-										<div className="ml-6">
-											<ul className=" text-xl leading-10 ">
+										<div className="">
+											<ul className=" text-sm leading-10 ">
 												<li>{item.subheading}</li>
 											</ul>
 										</div>
@@ -54,33 +48,25 @@ const VideoResponses = () => {
 
 							<div className="flex mt-5">
 								<div className="">
-									<Link className="font-bold text-lg text-purple-900">
+									<Link className="font-bold text-lg text-primary">
 										Learn More
 									</Link>
 								</div>
 								<div className="pl-3">
-									<Link className="pt-4 text-purple-900">
+									<Link className="pt-4 text-primary">
 										<FaArrowRightLong size={30} />
 									</Link>
 								</div>
 							</div>
-							<div className="w-[140px] h-1  bg-purple-900"></div>
+							<div className="w-[140px] h-1  bg-primary"></div>
 						</div>
 					</motion.div>
 					<motion.div
 						initial={{ opacity: 0, translateX: "-50%" }}
 						whileInView={{ opacity: 1, translateX: 0 }}
-						exit={{
-							translateX: "50%",
-							opacity: 0,
-							transition: {
-								duration: 0.25,
-								delay: 2,
-								ease: "easeIn",
-							},
-						}}
+						
 						transition={{
-							duration: 2,
+							duration: .75,
 							delay: 0.5,
 							ease: "easeInOut",
 						}}>

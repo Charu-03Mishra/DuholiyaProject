@@ -10,11 +10,11 @@ import SideNavBarResult from "./Layout/SideNavBarResult/SideNavBarResult";
 const App = () => {
 	const path = useLocation();
 	const pathname = path.pathname;
-	
 
 	return (
 		<>
-			{pathname == "/login" ||
+			{pathname == "/register" ||
+			pathname == "/login" ||
 			pathname == "/profile" ||
 			pathname == "/journey" ||
 			pathname == `/journey/assessment` ||
@@ -42,7 +42,8 @@ const App = () => {
 			)}
 			<Outlet />
 
-			{pathname == "/login" ||
+			{pathname == "/register" ||
+			pathname == "/login" ||
 			pathname == "/profile" ||
 			pathname == "/journey" ||
 			pathname == `/journey/assessment` ||

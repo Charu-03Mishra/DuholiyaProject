@@ -17,12 +17,12 @@ const PricingPackage = () => {
 					initial={{ opacity: 0, translateY: "-50%" }}
 					whileInView={{ opacity: 1, translateY: 0 }}
 					transition={{
-						duration: 2,
+						duration: .75,
 						delay: 0.5,
 						ease: "easeInOut",
 					}}>
 					<div className="text-center">
-						<p className="lg:text-6xl text-2xl font-bold leading-tight">
+						<p className="lg:text-5xl text-2xl font-bold leading-tight">
 							We create a monthly pricing package for all standard students
 						</p>
 						<p className="mt-3 text-lg text-gray-700">
@@ -37,18 +37,10 @@ const PricingPackage = () => {
 				<motion.div
 					initial={{ opacity: 0, translateY: "-50%" }}
 					whileInView={{ opacity: 1, translateY: 0 }}
-					exit={{
-						translateX: "50%",
-						opacity: 0,
-						transition: {
-							duration: 0.25,
-							delay: 2,
-							ease: "easeIn",
-						},
-					}}
+					
 					transition={{
-						duration: 2,
-						delay: 1,
+						duration: .75,
+						delay: .5,
 						ease: "easeInOut",
 					}}>
 					<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-10">
@@ -72,7 +64,7 @@ const PricingPackage = () => {
 											className=" flex  mt-2 items-center gap-2 leading-5"
 											key={i}>
 											{Logo(ele.icon, ele.color)}
-											<span className="leading-7  text-black ">
+											<span className="leading-7  text-[#545454] ">
 												{ele.subheading}
 											</span>
 										</div>
@@ -82,12 +74,12 @@ const PricingPackage = () => {
 									{item.price}
 								</p>
 								<div
-									className={` h-[60px] mt-5 mb-5 rounded-2xl border-2 border-black flex items-center justify-center `}
+									className={` h-[50px] mt-5 mb-5 rounded-lg border-2 border-black flex items-center justify-center `}
 									style={{
 										background: item.button,
 									}}>
 									<button
-										className="px-6 py-2 text-2xl font-bold whitespace-nowrap"
+										className=" py-1 text-sm  whitespace-nowrap"
 										style={{ color: item.text }}>
 										Purchase Course
 									</button>

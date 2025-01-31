@@ -8,7 +8,7 @@ const Page3 = () => {
 			<motion.div
 				initial={{ opacity: 0, translateX: "-50%" }}
 				whileInView={{ opacity: 1, translateX: 0 }}
-				transition={{ duration: 2, delay: 1, ease: "easeInOut" }}>
+				transition={{ duration: 0.75, delay: .5}}>
 				<div className="px-4 md:px-8 lg:px-24 mt-8   lg:h-[550px]  w-full">
 					<div
 						className="w-full h-auto rounded-t-xl rounded-bl-3xl rounded-br-3xl  relative p-6 md:p-8 lg:p-12"

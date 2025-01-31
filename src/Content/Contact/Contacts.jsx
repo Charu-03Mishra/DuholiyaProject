@@ -16,7 +16,7 @@ const ContactData = {
 	company: "",
 };
 
-const Contacts = ({ handlerClose }) => {
+const Contacts = () => {
 	const {
 		values,
 		handleBlur,
@@ -33,7 +33,7 @@ const Contacts = ({ handlerClose }) => {
 		},
 	});
 	return (
-		<div className=" flex   items-center ">
+		<div className=" flex py-5 items-center ">
 			<div className="flex  flex-col overflow-hidden rounded-lg border-2 border-gray-400   md:flex-row mx-auto  ">
 				<div
 					className=" w-[450px] hidden md:block md:w-[500px] md:px-2 md:py-2    md:mb-0"
@@ -85,13 +85,6 @@ const Contacts = ({ handlerClose }) => {
 					</div>
 				</div>
 				<div className="w-[450px] md:w-[500px] md:px-3  px-2 py-2   bg-white">
-					<div className="flex justify-end px-5">
-						<RxCross2
-							size={20}
-							className="cursor-pointer"
-							onClick={handlerClose}
-						/>
-					</div>
 					<h1 className="text-lg font-semibold text-black text-center">
 						Write to Us
 					</h1>

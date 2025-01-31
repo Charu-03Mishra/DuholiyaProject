@@ -8,7 +8,7 @@ class AuthApi {
 				`${import.meta.env.VITE_PUBLIC_APP_URL}/api/authorization/register`,
 				data
 			);
-			console.log(data);
+			console.log(res);
 
 			if (res.status === 200) {
 				localStorage.setItem("registerid", res.data);
@@ -51,13 +51,11 @@ class AuthApi {
 			// 	}
 			// );
 			const id = localStorage.getItem("registerid");
-			console.log(id);
 
 			const res = await axiosInstance.put(
 				`${import.meta.env.VITE_PUBLIC_APP_URL}/api/users/${id}/profile`,
 				data
 			);
-			console.log(data);
 
 			if (res.status === 200) {
 				return res;
@@ -67,6 +65,7 @@ class AuthApi {
 			return error?.response.data;
 		}
 	}
+	
 }
 
 export const authApi = new AuthApi();

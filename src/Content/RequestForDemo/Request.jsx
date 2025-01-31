@@ -31,16 +31,18 @@ const Request = () => {
 	});
 	return (
 		<>
-			<div className="p-6">
-				<div className="flex flex-col lg:flex-row mx-auto w-full lg:max-w-5xl bg-white rounded-lg overflow-hidden shadow-lg">
-					<div className=" lg:w-[45%] bg-gradient-to-r from-sky-500 to-indigo-500 flex items-center justify-center">
-						<img
-							className="w-full  "
-							src="/Images/Contact/rb_53932.png"
-							alt="Contact Illustration"
-						/>
+			<div className="px-5 py-5  flex justify-center min-h-screen  w-full ">
+				<div className="flex justify-center   min-h-screen md:flex-row flex-col  ">
+					<div className=" bg-purple-200 md:block hidden w-2/4  overflow-hidden     ">
+						<div className=" md:w-[400px] w-[300px] h-full  flex justify-center ">
+							<img
+								className="w-full  "
+								src="/Images/Contact/Rectangle21002.png"
+								alt="Contact Illustration"
+							/>
+						</div>
 					</div>
-					<div className=" lg:w-[55%] px-6 py-8 bg-black">
+					<div className=" w-[300px] md:w-[400px] px-5 bg-white shadow-xl">
 						<h1 className="text-2xl font-semibold text-white text-center mb-6">
 							Get A Free Demo
 						</h1>
@@ -122,23 +124,24 @@ const Request = () => {
 								<input
 									id="terms-checkbox"
 									type="checkbox"
-									className="form-checkbox h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+									className="form-checkbox h-3 w-3 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
 								/>
 								<label
 									htmlFor="terms-checkbox"
-									className="text-lg text-white cursor-pointer">
+									className="lg:text-sm text-sm text-black cursor-pointer">
 									I agree to the{" "}
-									<span className="text-blue-600 underline">
+									<span className="text-blue-600 lg:text-sm text-sm underline">
 										Terms & Conditions
 									</span>
 								</label>
 							</div>
-
-							<button
-								type="submit"
-								className="w-full py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg text-lg transition duration-300 ease-in-out transform hover:bg-blue-500 active:bg-blue-700 hover:shadow-xl active:scale-95">
-								Request Demo
-							</button>
+							<div className="flex justify-center py-3">
+								<button
+									type="submit"
+									className=" w-[200px] py-3 bg-primary text-white font-semibold  shadow-lg text-sm transition duration-300 ease-in-out transform hover:bg-blue-500 active:bg-blue-700 hover:shadow-xl active:scale-95">
+									Request Demo
+								</button>
+							</div>
 						</form>
 					</div>
 				</div>

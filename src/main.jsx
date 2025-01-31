@@ -24,6 +24,8 @@ import AssessmentsLibrary from "./Pages/AssessmentsLibrary/AssessmentsLibrary.js
 
 import Register from "./Pages/RegisterPage/Register.jsx";
 import Login from "./Content/Login/Login.jsx";
+import ContactPage from "./Pages/ContactPage/ContactPage.jsx";
+import DemoPage from "./Pages/RequestDemoPage/DemoPage.jsx";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -35,6 +37,9 @@ const router = createBrowserRouter(
 
 			<Route path="/register" element={<Register />} />
 			<Route path="/login" element={<Login />} />
+			<Route path="/requestdemo" element={<DemoPage />} />
+
+			<Route path="/contact" element={<ContactPage />} />
 
 			<Route path="/assessmentslibrary" element={<AssessmentsLibrary />} />
 			<Route path="/corporate/:id" element={<CorporateHomePage />} />

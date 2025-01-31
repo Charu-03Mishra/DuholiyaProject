@@ -8,7 +8,7 @@ const Page4 = () => {
 			<motion.div
 				initial={{ opacity: 0, translateX: "-50%" }}
 				whileInView={{ opacity: 1, translateX: 0 }}
-				transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}>
+				transition={{ duration: .75, delay: 0.5 }}>
 				<div className="mt-10 lg:px-36 px-5   ">
 					<h1 className="text-center text-5xl mb-5 font-bold">Use Cases</h1>
 					<div className=" grid lg:grid-cols-3 gap-6  grid-cols-1   ">

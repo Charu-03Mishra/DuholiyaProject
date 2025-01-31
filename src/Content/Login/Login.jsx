@@ -27,41 +27,53 @@ const Login = () => {
 				};
 
 				const res = await authApi.login(data);
+				console.log(res);
+
 				if (res.status === 200) {
-					
 					alert("Login sucessfully ");
 					nav("/profile");
 					action.resetForm();
+				} else {
+					setError(res);
 				}
-				else{
-                    setError(res)
-                }
 			},
 		});
 	return (
-		<div className=" flex   items-center justify-center bg-opacity-50">
-			<div className="flex   flex-col md:flex-row justify-center  shadow-lg overflow-hidden shadow-gray-400    rounded-lg">
-				<div className="w-[450px] hidden md:block md:w-[400px] shadow-lg bg-blue-500">
-					<img className="  " src="/Images/Home/login@4x.png" alt="Login" />
+		<div className=" flex justify-center  min-h-screen w-full px-5  ">
+			<div className="flex justify-center    min-h-screen md:flex-row flex-col  ">
+				<div className=" bg-purple-200 md:block hidden w-2/4  overflow-hidden     ">
+					<div className="w-[400px] h-full flex justify-center md:w-[400px] shadow-lg bg-blue-500">
+						<img
+							className=" w-[400px] "
+							src="/Images/Home/login@4x.png"
+							alt="Login"
+						/>
+					</div>
 				</div>
 
-				<div className="w-[450px] py-3 md:px-5 bg-white px-5 ">
-					<div className="lg:px-16 px-20 ">
-						<ol class="flex items-center justify-between gap-10 w-full">
-							<li class="">
-								<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12   shrink-0">
-									1
-								</span>
+				<div className=" w-[300px] md:w-[400px] bg-white shadow-xl">
+					<div className="flex justify-center py-2   ">
+						<ol class="flex items-center ">
+							<li class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] md:after:w-28 after:w-12 after:h-1 after:border-b after:border-blue-500 after:border-4 after:inline-block dark:after:border-blue-800">
+								<Link to={"/register"}>
+									<span class="flex items-center justify-center w-6 h-6 bg-primary text-white rounded-full md:h-8 md:w-8 dark:bg-blue-800 shrink-0">
+										1
+									</span>
+								</Link>
 							</li>
-							<li class="flex w-full items-center ">
-								<span class="flex items-center justify-center w-10 h-10 bg-blue-500 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-									2
-								</span>
+							<li class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] md:after:w-28 after:w-12 after:h-1 after:border-b after:border-blue-500 after:border-4 after:inline-block dark:after:border-blue-800">
+								<Link to={"/login"}>
+									<span class="flex items-center justify-center w-6 h-6 bg-primary text-white rounded-full md:h-8 md:w-8 dark:bg-gray-700 shrink-0">
+										2
+									</span>
+								</Link>
 							</li>
-							<li class="flex w-full items-center ">
-								<span class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
-									3
-								</span>
+							<li class="flex items-center w-full">
+								<Link to={"/profile"}>
+									<span class="flex items-center justify-center w-6 h-6 bg-gray-300 rounded-full md:h-8 md:w-8 dark:bg-gray-700 shrink-0">
+										3
+									</span>
+								</Link>
 							</li>
 						</ol>
 					</div>
@@ -70,10 +82,16 @@ const Login = () => {
 						<p className=" text-red-600 text-lg text-center py-4">{error}</p>
 					)}
 					<div>
-						<h1 className="text-center text-lg">Login to Your Account</h1>
+						<h1 className="text-center pt-5 lg:text-lg text-sm">
+							Login to Your Account
+						</h1>
 						<p className="text-center text-sm pt-1">
-							Don't have an account?{" "}
-							<span className="text-primary">Sign Up for Free !!</span>
+							Don't have an account?
+							<Link to={"/register"}>
+								<span className="text-primary text-xs lg:text-lg">
+									Sign Up for Free !!
+								</span>
+							</Link>
 						</p>
 					</div>
 					<div className="flex justify-center">
@@ -116,7 +134,7 @@ const Login = () => {
 									</p>
 								) : null}
 							</div>
-							<div className="flex text-sm justify-end">
+							<div className="flex text-xs  justify-end">
 								<Link>Forget Password?</Link>
 							</div>
 							<div className="">
@@ -125,16 +143,16 @@ const Login = () => {
 									id="check"
 									name="check"
 									value="CheckBox"
-									className="w-[17px] h-[12px]"
+									className="w-[16px] h-[12px] "
 								/>
-								<label htmlFor="check" className="text-sm">
+								<label htmlFor="check" className="text-xs">
 									{" "}
 									I agree to the Terms & Conditions
 								</label>
 								<div className=" flex justify-center mb-2">
 									<button
 										type="submit"
-										className="px-8 py-2 bg-primary text-white rounded-lg shadow-md text-xl mt-4 ">
+										className="px-8 py-2 bg-primary text-white rounded-lg shadow-md lg:text-lg text-sm mt-4 ">
 										Login
 									</button>
 								</div>
