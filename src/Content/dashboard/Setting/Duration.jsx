@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DashBoardButton from "../../../Component/dashboard/DashBoardButton/DashBoardButton";
 
 const Duration = () => {
 	const [showdur, setDur] = useState();
@@ -6,9 +7,9 @@ const Duration = () => {
 
 	return (
 		<>
-			<div className="w-full   py-5 border-l-2 border-blue-600  ">
+			<div className="col-span-10    py-5 border-l-2 border-blue-600  ">
 				<div className="mb-5">
-					<p className="text-center text-xl font-bold">Duration</p>
+					<p className="text-center text-[21px] Inter font-bold">Duration</p>
 				</div>
 				<div className="flex flex-col items-center px-5">
 					<div className="border-2 w-full max-w-[400px] border-blue-800 rounded-lg px-3 py-3">
@@ -19,11 +20,13 @@ const Duration = () => {
 									name="duration"
 									id="timebound"
 									value={"timebound"}
-									className="w-[20px] h-[20px]"
+									className="w-[16px] h-[16px]"
 									onChange={(e) => setDur(e.target.value)}
 								/>
 								 
-								<label for="registration" className="px-2 text-lg">
+								<label
+									for="registration"
+									className="px-2  Inter text-[14px] text-[#4F4F4F]">
 									Timebound
 								</label>
 							</div>
@@ -34,9 +37,11 @@ const Duration = () => {
 									id="limitless"
 									value={"limitless"}
 									onChange={(e) => setDur(e.target.value)}
-									className="w-[20px] h-[20px]"
+									className="w-[16px] h-[16px]"
 								/>
-								<label for="access" className="px-2 text-lg">
+								<label
+									for="access"
+									className="px-2  Inter text-[14px] text-[#4F4F4F]">
 									Limitless
 								</label>
 								 
@@ -45,14 +50,10 @@ const Duration = () => {
 					</div>
 
 					{showdur === "limitless" && (
-						<div className="my-5  px-10 py-2 bg-[#00B9E8]">
-							<button className="text-lg">Save</button>
-						</div>
+						<DashBoardButton />
 					)}
 					{showdur === "timebound" && (
-						<div className="my-5  px-10 py-2 bg-[#00B9E8]">
-							<button className="text-lg">Save</button>
-						</div>
+						<DashBoardButton />
 					)}
 				</div>
 			</div>

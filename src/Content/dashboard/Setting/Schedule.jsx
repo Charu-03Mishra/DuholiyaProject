@@ -22,7 +22,7 @@ const Schedule = () => {
 	const activeSchedule = AssessmentData.find((data) => data.name == "schedule");
 	return (
 		<>
-			<div className=" w-full overflow-y-scroll lg:px-3 py-5 border-l-2 border-blue-600  ">
+			<div className="col-span-10  lg:px-3 py-5 border-l-2 border-blue-600  ">
 				<div className="flex lg:justify-end items-center mb-5">
 					<div className="bg-primary relative rounded-lg flex  gap-2 text-white items-center sm:px-3 sm:py-2 px-5 py-3 mx-5 ">
 						<span>
@@ -32,7 +32,9 @@ const Schedule = () => {
 								onClick={showhandler}
 							/>
 						</span>
-						<button className="text-base  sm:text-lg" onClick={showhandler}>
+						<button
+							className="text-base  text-[16px] Manrope"
+							onClick={showhandler}>
 							Add Version
 						</button>
 					</div>
@@ -52,48 +54,64 @@ const Schedule = () => {
 									}}>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
+											textAlign:"center",
+												
 										}}>
 										Version
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Time Zone
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										From
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Untill
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Status
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Live
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}></TableCell>
 								</TableRow>
@@ -110,12 +128,20 @@ const Schedule = () => {
 											scope="row"
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#191D23",
+												fontWeight: "bold",
+												textAlign:"center",
+												
 											}}>
 											{row.version}
 										</TableCell>
 										<TableCell
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#191D23",
+												fontWeight: "bold",
 												textAlign: "center",
 											}}>
 											{row.timezone}
@@ -123,6 +149,8 @@ const Schedule = () => {
 										<TableCell
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#191D23",
 												textAlign: "center",
 											}}>
 											{row.from}
@@ -130,6 +158,8 @@ const Schedule = () => {
 										<TableCell
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#191D23",
 												textAlign: "center",
 											}}>
 											{row.untill}
@@ -137,6 +167,9 @@ const Schedule = () => {
 										<TableCell
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#191D23",
+												fontWeight: "bold",
 												textAlign: "center",
 											}}>
 											{row.status}
@@ -144,6 +177,9 @@ const Schedule = () => {
 										<TableCell
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#0B87AC",
+												fontWeight: "bold",
 												textAlign: "center",
 											}}>
 											{row.live}
@@ -152,6 +188,7 @@ const Schedule = () => {
 											sx={{
 												fontSize: "16px",
 												display: "flex",
+												fontWeight: "bold",
 												alignItems: "center",
 												gap: "4px",
 												justifyContent: "center",

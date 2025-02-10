@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiRefreshCw } from "react-icons/fi";
 import SaveButton from "../../../Component/SaveButton/SaveButton";
+import DashBoardButton from "../../../Component/dashboard/DashBoardButton/DashBoardButton";
 
 const Access = () => {
 	const [inputValue, setInputValue] = useState("");
@@ -9,9 +10,9 @@ const Access = () => {
 	console.log(date, "Date");
 	return (
 		<>
-			<div className="w-full py-5 border-l-2 border-blue-600">
+			<div className="col-span-10  py-5 border-l-2 border-blue-600">
 				<div className="mb-5">
-					<p className="text-center text-xl md:text-2xl font-bold">
+					<p className="text-center Inter text-[21px] font-bold">
 						Allow Participants By
 					</p>
 				</div>
@@ -24,12 +25,12 @@ const Access = () => {
 									name="participants"
 									id="registration"
 									value="registration"
-									className="w-5 h-5"
+									className="w-4 h-4"
 									onChange={(e) => setInputValue(e.target.value)}
 								/>
 								<label
 									htmlFor="registration"
-									className="px-2 text-lg sm:text-base md:text-lg">
+									className="px-2  Inter text-[14px] text-[#4F4F4F]">
 									Registration
 								</label>
 							</div>
@@ -39,12 +40,12 @@ const Access = () => {
 									name="participants"
 									id="access"
 									value="access"
-									className="w-5 h-5"
+									className="w-4 h-4"
 									onChange={(e) => setInputValue(e.target.value)}
 								/>
 								<label
 									htmlFor="access"
-									className="px-2 text-lg sm:text-base md:text-lg">
+									className="px-2 Inter text-[14px] text-[#4F4F4F]">
 									Access Key
 								</label>
 							</div>
@@ -56,24 +57,24 @@ const Access = () => {
 								<div>
 									<label
 										htmlFor="key"
-										className="block text-sm sm:text-base md:text-lg font-medium text-black">
+										className="block inter text-[14px] Inter  text-[#4F4F4F]">
 										Key
 									</label>
-									<div className="flex items-center border-2 rounded-md border-black mt-2">
+									<div className="flex items-center  rounded-md  mt-2">
 										<input
 											type="text"
 											name="key"
 											id="key"
 											value="6543797564"
 											readOnly
-											className="w-full px-3 py-2 text-gray-700 focus:outline-none"
+											className="w-full  border-[1px] rounded-md border-[#EEEEEE] text-[#3A3A3A] px-3 py-2 Open Sans text-[14px] focus:outline-none"
 										/>
 									</div>
 								</div>
 								<div className="mt-4">
 									<label
 										htmlFor="expire"
-										className="block text-sm sm:text-base md:text-lg font-medium text-black">
+										className="block Inter text-[14px] inter  text-[#4F4F4F]">
 										Expire On
 									</label>
 									<div className="mt-2">
@@ -83,16 +84,14 @@ const Access = () => {
 											id="expire"
 											onChange={(e) => setDate(e.target.value)}
 											value={date}
-											className="w-full px-3 py-2 border-2 rounded-md border-black text-gray-700 focus:outline-none"
+											className="w-full  border-[1px] rounded-md border-[#EEEEEE] text-[#3A3A3A] px-3 py-2 Open Sans text-[14px] focus:outline-none"
 										/>
 									</div>
 								</div>
 							</form>
 						</div>
 					)}
-					<div className="">
-						<SaveButton />
-					</div>
+					<DashBoardButton />
 				</div>
 			</div>
 		</>

@@ -7,7 +7,10 @@ import { MdMail } from "react-icons/md";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { authApi } from "../../mocks/auth";
-
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../../FireBase/FireBase";
+const auth = getAuth(app);
+const googleAuthProvider = new GoogleAuthProvider();
 const initialValues = {
 	email: "",
 	password: "",
@@ -15,6 +18,20 @@ const initialValues = {
 
 const Login = () => {
 	const nav = useNavigate();
+	const signupGoogle = async () => {
+		const result = await signInWithPopup(auth, googleAuthProvider);
+		const token = await result.user.getIdToken();
+		try {
+			if (token) {
+				nav("/");
+			} else {
+				nav("/login");
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const [error, setError] = useState("");
 	const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
 		useFormik({
@@ -22,12 +39,13 @@ const Login = () => {
 			validationSchema: loginValidation,
 			onSubmit: async (value, action) => {
 				const data = {
+					isEmployee: false,
+					productId: "9289c385-2943-454c-b44d-1d8e5b8dadf5",
 					userName: value.email,
 					password: value.password,
 				};
 
 				const res = await authApi.login(data);
-				console.log(res);
 
 				if (res.status === 200) {
 					alert("Login sucessfully ");
@@ -88,7 +106,7 @@ const Login = () => {
 						<p className="text-center text-sm pt-1">
 							Don't have an account?
 							<Link to={"/register"}>
-								<span className="text-primary text-xs lg:text-lg">
+								<span className="text-primary text-xs lg:text-xs">
 									Sign Up for Free !!
 								</span>
 							</Link>
@@ -154,6 +172,22 @@ const Login = () => {
 										type="submit"
 										className="px-8 py-2 bg-primary text-white rounded-lg shadow-md lg:text-lg text-sm mt-4 ">
 										Login
+									</button>
+								</div>
+								<div className="flex justify-center ">
+									<p className="font-bold text-black text-sm">OR</p>
+								</div>
+								<div className=" flex pb-5 justify-center mt-2">
+									<button
+										type="button"
+										onClick={signupGoogle}
+										className=" border-2 border-black justify-center items-center flex gap-2 p-2 text-black text-sm lg:text-lg  rounded-lg shadow-md">
+										<img
+											className="w-5 h-5"
+											src="Images/Login/google.png"
+											alt=""
+										/>
+										Sign In With Google
 									</button>
 								</div>
 							</div>

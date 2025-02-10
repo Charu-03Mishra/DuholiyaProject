@@ -9,7 +9,7 @@ const Page1 = () => {
 	const token = localStorage.getItem("authToken");
 	const handleNavigate = () => {
 		if (token) {
-			nav("/corporate/1");
+			nav("/corporate/9289c385-2943-454c-b44d-1d8e5b8dadf5");
 		} else {
 			nav("/login");
 		}
@@ -17,6 +17,17 @@ const Page1 = () => {
 
 	return (
 		<motion.div
+			drag
+			whileDrag={{
+				scale: 0.8,
+			}}
+			dragConstraints={{
+				left: 0,
+				top: 0,
+				right: 1000,
+				bottom: 500,
+			}}
+			dragDirectionLock="true"
 			initial={{ opacity: 0, translateY: "-50%" }}
 			whileInView={{ opacity: 1, translateY: 0 }}
 			transition={{
@@ -29,7 +40,7 @@ const Page1 = () => {
 					backgroundRepeat: "no-repeat",
 					width: "100%",
 				}}
-				className=" min-h-[100vh] md:block hidden  bg-cover bg-center ">
+				className=" bg-opacity-30 peer-focus:opacity-100 min-h-[100vh] md:block hidden  bg-cover bg-center ">
 				<div className="lg:px-20 px-5">
 					<div className="   py-3">
 						<p className="text-primary text-3xl  lg:text-6xl ">
@@ -82,7 +93,6 @@ const Page1 = () => {
 					</div>
 					<div className=" py-3 flex justify-center ">
 						<div className="w-44 flex items-center justify-center gap-5  lg:py-2 py-1 border-2 border-primary rounded-lg">
-							
 							<button onClick={handleNavigate} className="text-lg text-primary">
 								Get Started
 							</button>

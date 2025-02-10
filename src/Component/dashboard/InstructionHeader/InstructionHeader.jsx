@@ -11,19 +11,23 @@ const InstructionHeader = () => {
 	return (
 		<>
 			<div
-				className={` flex py-2 inter bg-white justify-between items-center px-4 md:px-8 `}>
+				className={`sticky top-[75px] z-[10000] max-h-screen overflow-y-scroll flex py-2 Inter bg-white justify-between border-b-[1px] border-secondary items-center px-4 md:px-8 `}>
 				<div className="">
-					<h1 className="text-lg md:text-xl font-semibold">Untitled</h1>
+					<Link to={"/journey"}>
+						<h1 className="text-[25.41px] text-secondary font-semibold">
+							Untitled
+						</h1>
+					</Link>
 				</div>
-				<div className="flex items-center lg:gap-14 gap-7 md:gap-10">
+				<div className="flex items-center inter text-[21.78px] lg:gap-14 gap-7 md:gap-10">
 					<div className="py-2">
 						<NavLink
 							to="/journey/assissment/assessments/instruction"
 							className={({ isActive }) =>
 								`${
 									isActive
-										? "text-primary border-b-2 font-bold text-base md:text-xl border-primary "
-										: "text-gray-500 font-bold text-base md:text-lg"
+										? "text-primary border-b-2 font-bold text-base border-primary "
+										: "text-gray-500 font-bold text-base "
 								}  `
 							}>
 							<span className="hidden lg:block">Instructions</span>
@@ -38,8 +42,8 @@ const InstructionHeader = () => {
 							className={({ isActive }) =>
 								`${
 									isActive
-										? "text-primary border-b-2 font-bold text-base md:text-xl border-primary "
-										: "text-gray-500 font-bold text-base md:text-lg"
+										? "text-primary border-b-2 font-bold text-base border-primary "
+										: "text-gray-500 font-bold text-base "
 								}  `
 							}>
 							<span className="hidden lg:block">Settings</span>
@@ -54,8 +58,8 @@ const InstructionHeader = () => {
 							className={({ isActive }) =>
 								`${
 									isActive
-										? "text-[#003262] border-b-2 border-[#003262] font-bold text-base md:text-xl"
-										: "text-gray-500 font-bold text-base md:text-xl"
+										? "text-[#003262] border-b-2 border-[#003262] font-bold text-base "
+										: "text-gray-500 font-bold text-base "
 								}`
 							}>
 							<span className="block lg:hidden">
@@ -70,8 +74,8 @@ const InstructionHeader = () => {
 							className={({ isActive }) =>
 								`${
 									isActive
-										? "text-[#003262] border-b-2 border-[#003262] font-bold text-base md:text-xl"
-										: "text-gray-500 font-bold text-base md:text-xl"
+										? "text-[#003262] border-b-2 border-[#003262] font-bold text-base "
+										: "text-gray-500 font-bold text-base "
 								}`
 							}>
 							<span className="block lg:hidden">

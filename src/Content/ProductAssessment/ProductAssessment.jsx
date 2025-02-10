@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AssessmentCard from "../../Component/ProducrCard/AssessmentCard";
 import { easeIn, easeOut, motion } from "framer-motion";
+import { authApi } from "../../mocks/auth";
 const ProductAssessment = () => {
+	// const [data, Setdata] = useState();
+	// const getallProduct = async () => {
+	// 	const result = await authApi.product();
+	// 	Setdata(result);
+	// 	// console.log(result, "result");
+	// 	console.log(data, "data");
+	// };
+	// useEffect(() => {
+	// 	getallProduct();
+	// }, []);
 	return (
 		<>
 			<div className="px-10 mt-5">

@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import DashBoardButton from "../../../Component/dashboard/DashBoardButton/DashBoardButton";
 
 const VersionPop = ({ closehandler }) => {
-    const[value, setValue] = useState("1.2")
+	const [value, setValue] = useState("1.2");
 	return (
 		<div className=" absolute top-[40%] md:left-[30%] left-[20%] flex justify-center ">
 			<div className="bg-white shadow-xl px-5 py-2 lg:w-[700px]   ">
@@ -16,24 +17,26 @@ const VersionPop = ({ closehandler }) => {
 				</div>
 
 				<div className="flex justify-center">
-					<p className="text-primary text-2xl font-bold">Add New Version</p>
+					<p className="text-primary font-bold text-[21px] inter">
+						Add New Version
+					</p>
 				</div>
 				<div className="px-24">
 					<form action="">
 						<div className="mt-7 ">
-							<label className="text-xl" htmlFor="">
+							<label className="text-[14px] text-[#3A3A3A] Inter" htmlFor="">
 								Version
 							</label>
 						</div>
 						<div className="w-full  ">
 							<input
 								type="text "
-                                value={value}
-								className="focus:outline-none border-2 border-black w-full px-3 h-11 rounded-lg my-4 "
+								value={value}
+								className="focus:outline-none border-2 Open Sans text-[14px]  text-[#3A3A3A] border-black w-full px-3 h-11 rounded-lg my-4 "
 							/>
 						</div>
 						<div>
-							<label for="set" className="text-xl">
+							<label for="set" className="text-[14px] text-[#3A3A3A] Inter">
 								Sets Creation
 							</label>
 						</div>
@@ -41,18 +44,12 @@ const VersionPop = ({ closehandler }) => {
 							<select
 								name="set"
 								id="set"
-								className=" w-full h-11 px-3 border-2 border-black rounded-lg my-4  ">
+								className=" w-full h-11 px-3 border-2 Open Sans text-[14px]  text-[#3A3A3A] border-black rounded-lg my-4  ">
 								<option value="automatic">Automatic</option>
 								<option value="explicit">Explicit</option>
 							</select>
 						</div>
-						<div className="flex justify-center my-10">
-							<button
-								type="submit"
-								className="bg-secondary px-10 py-4 text-xl rounded-lg">
-								Save
-							</button>
-						</div>
+						<DashBoardButton />
 					</form>
 				</div>
 			</div>

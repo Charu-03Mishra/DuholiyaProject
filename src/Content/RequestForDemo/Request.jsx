@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdContactPhone } from "react-icons/md";
 import { MdMail } from "react-icons/md";
 import { FaUserGraduate } from "react-icons/fa";
@@ -6,32 +6,45 @@ import { FaCompress } from "react-icons/fa";
 import Input from "../../Component/Input/Input";
 import { useFormik } from "formik";
 import { RequestValidation } from "../../Schema/ValidationSchema";
+import { authApi } from "../../mocks/auth";
+import { useNavigate } from "react-router-dom";
+import RequestPopUp from "../../Component/RequesPopUp/RequestPopUp";
 
 const DemoData = {
 	name: "",
 	phonenumber: "",
 	email: "",
 	company: "",
+	message: "",
 };
 const Request = () => {
-	const {
-		errors,
-		handleBlur,
-		onBlur,
-		handleChange,
-		touched,
-		handleSubmit,
-		values,
-	} = useFormik({
-		initialValues: DemoData,
-		validationSchema: RequestValidation,
-		onSubmit: (value, action) => {
-			action.resetForm();
-		},
-	});
+	const nav = useNavigate();
+	const [submit, setsubmit] = useState("");
+	const { errors, handleBlur, handleChange, touched, handleSubmit, values } =
+		useFormik({
+			initialValues: DemoData,
+			validationSchema: RequestValidation,
+			onSubmit: async (value, action) => {
+				const data = {
+					name: value.name,
+					company: value.company,
+					message: value.message,
+					email: value.email,
+					phone: value.phonenumber,
+				};
+				const res = await authApi.Request(data);
+				if (res.status === 200) {
+					action.resetForm();
+					setsubmit(true);
+				} else {
+					console.log("error");
+				}
+			},
+		});
+
 	return (
 		<>
-			<div className="px-5 py-5  flex justify-center min-h-screen  w-full ">
+			<div className="px-5 py-5 relative flex justify-center   w-full ">
 				<div className="flex justify-center   min-h-screen md:flex-row flex-col  ">
 					<div className=" bg-purple-200 md:block hidden w-2/4  overflow-hidden     ">
 						<div className=" md:w-[400px] w-[300px] h-full  flex justify-center ">
@@ -48,14 +61,14 @@ const Request = () => {
 						</h1>
 						<form onSubmit={handleSubmit} className="space-y-5">
 							<Input
+								label={"Enter Your Name"}
 								type={"text"}
-								label={"Name "}
-								name={"name"}
-								id={"name"}
-								placeholder={"Enter the Name"}
-								onChange={onchange}
-								onBlur={onBlur}
+								autoComplete={"off"}
 								value={values.name}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								placeholder={"Enter Your Name"}
+								name={"name"}
 								icon={<FaUserGraduate size={20} />}
 							/>
 							<div>
@@ -85,14 +98,14 @@ const Request = () => {
 								) : null}
 							</div>
 							<Input
-								type={"number"}
-								label={"Phone Number "}
-								name={"phonenumber"}
-								id={"phonenumber"}
-								placeholder={"Enter the Phone Number"}
-								onChange={onchange}
-								onBlur={onBlur}
+								label={"Enter Your Phone Number"}
+								type={"text"}
+								autoComplete={"off"}
 								value={values.phonenumber}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								placeholder={"Enter Your Phone Number"}
+								name={"phonenumber"}
 								icon={<MdContactPhone size={20} />}
 							/>
 							<div>
@@ -104,13 +117,13 @@ const Request = () => {
 							</div>
 							<Input
 								type={"text"}
-								label={"Company "}
-								name={"company"}
-								id={"compnay"}
-								placeholder={"Enter Your Company Name"}
-								onChange={onchange}
-								onBlur={onBlur}
+								label={"Company"}
+								autoComplete={"off"}
 								value={values.company}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								placeholder={"Enter Your Compnay Name"}
+								name={"company"}
 								icon={<FaCompress size={20} />}
 							/>
 							<div>
@@ -119,6 +132,24 @@ const Request = () => {
 										{errors.company}
 									</p>
 								) : null}
+							</div>
+							<div className="pb-5 mt-5">
+								<label
+									htmlFor="message"
+									className="block text-lg font-medium text-black mb-2">
+									Message
+								</label>
+								<div className="flex items-center bg-white border-2 border-gray-300 rounded-lg overflow-hidden focus-within:border-blue-500 transition">
+									<textarea
+										rows="4"
+										type={"message"}
+										autoComplete={"off"}
+										value={values.message}
+										onChange={handleChange}
+										onBlur={handleBlur}
+										name={"message"}
+										className="appearance-none border w-full rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-gray-500"></textarea>
+								</div>
 							</div>
 							<div className="flex items-center space-x-2">
 								<input
@@ -145,6 +176,13 @@ const Request = () => {
 						</form>
 					</div>
 				</div>
+			</div>
+
+			<div
+				className={`absolute top-[15%] left-0 right-0 bottom-0 ${
+					submit ? "block" : "hidden"
+				}`}>
+				<RequestPopUp setsubmit={setsubmit} />
 			</div>
 		</>
 	);

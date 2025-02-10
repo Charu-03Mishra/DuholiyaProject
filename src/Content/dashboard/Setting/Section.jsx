@@ -21,7 +21,7 @@ const Section = () => {
 	};
 	const activesection = AssessmentData.find((data) => data.name == "section");
 	return (
-		<div className=" w-full overflow-y-scroll lg:px-3 py-5 border-l-2 border-blue-600  ">
+		<div className="col-span-10 lg:px-3 py-5 border-l-2 border-blue-600  ">
 			<div className="flex lg:justify-end items-center mb-5">
 				<div className="bg-primary relative rounded-lg flex  gap-2 text-white items-center sm:px-3 sm:py-2 px-5 py-3 mx-5 ">
 					<span>
@@ -31,7 +31,9 @@ const Section = () => {
 							onClick={showhandler}
 						/>
 					</span>
-					<button className="text-base  sm:text-lg" onClick={showhandler}>
+					<button
+						className="text-base  text-[16px] Manrope"
+						onClick={showhandler}>
 						Add Version
 					</button>
 				</div>
@@ -51,62 +53,82 @@ const Section = () => {
 								}}>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
+										textAlign:"center",
+												
 									}}>
 									Order
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									Section
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									Max Question
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									Equal Marks ?
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									Marks
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									NegitiveMarking
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									Shuffle Question
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}>
 									Status
 								</TableCell>
 								<TableCell
 									sx={{
-										fontSize: "18px",
+										fontFamily: "Manrope",
+										color: "#003262",
+										fontSize: "14px",
 										textAlign: "center",
 									}}></TableCell>
 							</TableRow>
@@ -123,12 +145,18 @@ const Section = () => {
 										scope="row"
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
+											textAlign:"center",
+												
 										}}>
 										{row.order}
 									</TableCell>
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
 										}}>
 										{row.section}
@@ -136,6 +164,8 @@ const Section = () => {
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
 										}}>
 										{row.maxque}
@@ -143,6 +173,8 @@ const Section = () => {
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
 										}}>
 										{row.equalmarks}
@@ -150,34 +182,48 @@ const Section = () => {
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
+											fontWeight: "bold",
 										}}>
 										{row.mark}
 									</TableCell>
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
+											fontWeight: "bold",
 										}}>
 										{row.negitivemark}
 									</TableCell>
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
+											fontWeight: "bold",
 										}}>
 										{row.shuffle}
 									</TableCell>
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											textAlign: "center",
+											fontWeight: "bold",
 										}}>
 										{row.status}
 									</TableCell>
 									<TableCell
 										sx={{
 											fontSize: "16px",
+											fontFamily: "Manrope",
+											color: "#191D23",
 											display: "flex",
 											alignItems: "center",
 											gap: "4px",

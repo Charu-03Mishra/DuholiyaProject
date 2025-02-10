@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
+import DashBoardButton from "../../../Component/dashboard/DashBoardButton/DashBoardButton";
 
 const SetPop = ({ closehandler }) => {
 	const [Value, setValue] = useState("AA-001");
@@ -15,12 +16,12 @@ const SetPop = ({ closehandler }) => {
 				</div>
 
 				<div className="flex justify-center">
-					<p className="text-primary text-2xl font-bold">Add Set</p>
+					<p className="text-primary font-bold text-[21px] inter">Add Set</p>
 				</div>
 				<div className="px-24">
 					<form action="">
 						<div className="mt-7 ">
-							<label className="text-xl" htmlFor="">
+							<label className="text-[14px] text-[#3A3A3A] Inter" htmlFor="">
 								Code
 							</label>
 						</div>
@@ -28,11 +29,11 @@ const SetPop = ({ closehandler }) => {
 							<input
 								type="text "
 								value={Value}
-								className="focus:outline-none border-2 border-black w-full px-3 h-11 rounded-lg my-4 "
+								className="focus:outline-none border-2 border-black w-full px-3 h-11 rounded-lg my-4 Open Sans text-[14px]  text-[#3A3A3A] "
 							/>
 						</div>
 						<div>
-							<label for="status" className="text-xl">
+							<label className="text-[14px] text-[#3A3A3A] Inter" htmlFor="">
 								Status
 							</label>
 						</div>
@@ -40,18 +41,12 @@ const SetPop = ({ closehandler }) => {
 							<select
 								name="status"
 								id="status"
-								className=" w-full h-11 px-3 border-2 border-black rounded-lg my-4  ">
+								className=" w-full h-11 px-3 Open Sans text-[14px]  text-[#3A3A3A] border-2 border-black rounded-lg my-4  ">
 								<option value="automatic">Active</option>
 								<option value="explicit">Non-Active</option>
 							</select>
 						</div>
-						<div className="flex justify-center my-10">
-							<button
-								type="submit"
-								className="bg-secondary px-10 py-4 text-xl rounded-lg">
-								Save
-							</button>
-						</div>
+						<DashBoardButton />
 					</form>
 				</div>
 			</div>

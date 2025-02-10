@@ -7,35 +7,61 @@ const ParticipantsSideNavBar = ({ activeTab, setActiveTab }) => {
 	console.log(setActiveTab);
 	const [isOpen, setIsOpen] = useState(false);
 	return (
-		<div>
-			<button
-				className="md:hidden p-4 focus:outline-none"
-				onClick={() => setIsOpen(!isOpen)}>
-				{isOpen ? <AiOutlineMenu size={25} /> : <AiOutlineClose size={25} />}
-			</button>
-			<div className={`${isOpen ? "hidden" : "block"} px-3 md:block py-5`}>
-				<div
-					onClick={() => setActiveTab("Group")}
-					className={`${
-						activeTab == "Group" ? "bg-[#003262] text-white" : " text-black"
-					}  flex w-[180px] items-center gap-2 cursor-pointer  rounded-lg px-4 py-2 mb-8`}>
-					<span>
-						<MdOutlineGroup size={30} />
-					</span>
-					<h1 className="text-lg font-bold">Group</h1>
+		<div className="col-span-2">
+			<div className=" px-3  py-5">
+				<div className="lg:block hidden">
+					<div
+						onClick={() => setActiveTab("Group")}
+						className={`${
+							activeTab == "Group"
+								? "bg-[#003262] text-[#FFFFFF]"
+								: " text-[#6B6B6B]"
+						}  flex  items-center gap-2 cursor-pointer  rounded-lg px-4 py-2 mb-8`}>
+						<span>
+							<MdOutlineGroup size={20} />
+						</span>
+						<h1 className="text-[14px] Inter ">Group</h1>
+					</div>
 				</div>
-
-				<div
-					onClick={() => setActiveTab("individual")}
-					className={`${
-						activeTab == "individual"
-							? "bg-[#003262] text-white"
-							: " text-black"
-					}  flex w-[180px] items-center cursor-pointer gap-2  rounded-lg px-4 py-2 mb-8`}>
-					<span>
-						<MdOutlineAirlineSeatIndividualSuite size={30} />
-					</span>
-					<h1 className="text-lg font-bold">Individual</h1>
+				<div className="lg:hidden block">
+					<div className="flex justify-center">
+						<span
+							onClick={() => setActiveTab("Group")}
+							className={`${
+								activeTab == "Group"
+									? "bg-[#003262] text-[#FFFFFF]"
+									: " text-[#6B6B6B]"
+							}  mb-8`}>
+							<MdOutlineGroup size={30} />
+						</span>
+					</div>
+				</div>
+				<div className="hidden lg:block">
+					<div
+						onClick={() => setActiveTab("individual")}
+						className={`${
+							activeTab == "individual"
+								? "bg-[#003262] text-[#FFFFFF]"
+								: " text-[#6B6B6B]"
+						}  flex items-center cursor-pointer gap-2  rounded-lg px-4 py-2 mb-8`}>
+						<span>
+							<MdOutlineAirlineSeatIndividualSuite size={20} />
+						</span>
+						<h1 className="text-[14px] Inter">Individual</h1>
+					</div>
+				</div>
+				<div className="block lg:hidden">
+					<div className="flex justify-center">
+						<span
+							onClick={() => setActiveTab("individual")}
+							className={`${
+								activeTab == "individual"
+									? "bg-[#003262] text-[#FFFFFF]"
+									: " text-[#6B6B6B]"
+							}  mb-8`}>
+							<MdOutlineAirlineSeatIndividualSuite size={30} />
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

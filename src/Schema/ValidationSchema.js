@@ -23,13 +23,14 @@ export const profileValidation = Yup.object({
 
 export const RequestValidation = Yup.object({
 	name: Yup.string().min(2).max(20).required("Name is Required"),
-	phonenumber: Yup.number().min(10).max(13).required("PhoneNumber Is Requried"),
+	phonenumber: Yup.string().min(10).max(13).required("PhoneNumber Is Requried"),
 	email: Yup.string().email().required("Enter the valid Email"),
 	company: Yup.string().min(2).max(20).required("Company Name is Required"),
+	message: Yup.string().min(2).max(100).required("Message is Required"),
 });
 export const ContactValidation = Yup.object({
-	name: Yup.string().min(2).max(20).required("Name is Required"),
-	phonenumber: Yup.number().min(10).max(13).required("PhoneNumber Is Requried"),
+	name: Yup.string().required("Name is Required"),
+	phonenumber: Yup.string().min(10).required("PhoneNumber Is Requried"),
 	email: Yup.string().email().required("Enter the valid Email"),
 	subject: Yup.string().min(2).max(20).required("Subject Name is Required"),
 	message: Yup.string().min(2).max(100).required("Message is Required"),

@@ -17,8 +17,8 @@ const QuestionTop = () => {
 	};
 
 	return (
-		<div className="relative">
-			<div className="flex justify-between items-center px-5 py-3 border-b border-gray-500">
+		<div className="">
+			<div className="flex justify-between  items-center px-5 py-3 border-b border-gray-500">
 				<div className="flex items-center bg-white px-2 py-1   border-2 border-gray-300  overflow-hidden rounded-lg ">
 					<div className="px-1 py-1">
 						<CiSearch size={20} />

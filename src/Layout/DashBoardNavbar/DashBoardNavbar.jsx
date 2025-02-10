@@ -10,7 +10,7 @@ const DashBoardNavbar = () => {
 	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	return (
-		<nav className="">
+		<nav className="sticky top-0 z-[10000] max-h-screen overflow-y-scroll">
 			<div className="flex justify-between px-2 py-5 bg-primary rounded-t-lg">
 				<div className="flex gap-8 justify-center items-center">
 					<div>
@@ -19,7 +19,7 @@ const DashBoardNavbar = () => {
 						</Link>
 					</div>
 					<div>
-						<h1 className="text-3xl font-bold text-secondary open-sans ">
+						<h1 className="text-lg font-bold text-secondary open-sans ">
 							Title Here--
 						</h1>
 					</div>
@@ -27,7 +27,7 @@ const DashBoardNavbar = () => {
 
 				<div className="hidden md:flex justify-center px-3 items-center gap-5">
 					<div>
-						<h1 className="text-2xl text-[#00B9E8] open-sans text-right font-bold">
+						<h1 className="text-lg text-[#00B9E8] open-sans text-right font-bold">
 							WelCome Charu
 						</h1>
 					</div>

@@ -15,34 +15,18 @@ const Corporate = () => {
 	return (
 		<>
 			<div className="">
-				<div className="grid lg:grid-cols-2 px-5  gap-4 md:px-20  mt-10">
-					<motion.div
-						initial={{ opacity: 0, translateX: "-50%" }}
-						whileInView={{ opacity: 1, translateX: 0 }}
-						
-						transition={{
-							duration: .75,
-							delay: 0.5,
-							ease: "easeInOut",
-						}}>
-						<div className="relative ">
+				<div className=" px-5  grid grid-cols-12  gap-4 md:px-20  mt-10">
+					
+						<div className="col-span-6 ">
 							<img
-								className="w-full lg:h-[450px] sm:h-[300px] md:h-[350px]"
+								className="h-[400px] w-[500px]"
 								src={`/Images/Corporate/${learningData.image}`}
 								alt=""
 							/>
 						</div>
-					</motion.div>
-					<motion.div
-						initial={{ opacity: 0, translateX: "-50%" }}
-						whileInView={{ opacity: 1, translateX: 0 }}
+				
 					
-						transition={{
-							duration: .75,
-							delay: 0.5,
-							ease: "easeInOut",
-						}}>
-						<div className=" lg:pl-24 pt-5 ">
+						<div className=" col-span-6  pt-5 ">
 							<h1 className="lg:text-3xl text-justify text-[#3A3A3A] font-bold">
 								{learningData.heading}
 							</h1>
@@ -58,7 +42,7 @@ const Corporate = () => {
 											<IoIosCheckmarkCircle size={20} />
 										</div>
 										<div className="">
-											<ul className=" text-sm leading-10 ">
+											<ul className=" text-xs leading-10 ">
 												<li>{item.subheading}</li>
 											</ul>
 										</div>
@@ -80,7 +64,7 @@ const Corporate = () => {
 							</div>
 							<div className="w-[140px] h-1  bg-primary"></div>
 						</div>
-					</motion.div>
+					
 				</div>
 			</div>
 		</>

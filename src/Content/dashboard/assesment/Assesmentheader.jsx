@@ -7,8 +7,8 @@ const Assesmentheader = () => {
 	return (
 		<>
 			{name == "assessments" || name == "results" ? (
-				<div className=" bg-white">
-					<div className=" inter  z-10 flex py-4 px-10 gap-10 border-b-2 border-black">
+				<div className=" bg-white sticky top-[75px] overflow-y-scroll z-[1000]">
+					<div className=" Inter  flex py-4 px-10 gap-10 border-b-[2px] border-gray-500">
 						<Link
 							to={"/journey/assessment/assessments"}
 							className={` ${

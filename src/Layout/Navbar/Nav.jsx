@@ -1,249 +1,548 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdMail, MdOutlineKeyboardArrowDown, MdPhone } from "react-icons/md";
 import { LuNotebookPen } from "react-icons/lu";
 import { MdLibraryBooks } from "react-icons/md";
 import { TbApiApp } from "react-icons/tb";
-import { MdContactPhone } from "react-icons/md";
-import { MdMail } from "react-icons/md";
 import { MdCorporateFare } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi2";
-import { FiMenu, FiX } from "react-icons/fi";
-import LoginPopUp from "../../Content/Home/LoginPopUp";
-import Contacts from "../../Content/Contact/Contacts";
-
+import { FaBars } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { RxCross2 } from "react-icons/rx";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
+import { authApi } from "../../mocks/auth";
+import RequestPopUp from "../../Component/RequesPopUp/RequestPopUp";
 const Nav = () => {
+	const [details, setdetails] = useState([]);
+	const [support, setsupport] = useState("");
+	const [login, setLogin] = useState();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [openProduct, setopenProduct] = useState(false);
+
 	const nav = useNavigate();
-	const [login, setLogin] = useState(false);
-	const [contact, setContact] = useState(false);
+	const [solution, setSolution] = useState(false);
 
-	const handlerClose = () => {
-		setContact(false);
-		nav("/");
+	const Menuhandler = () => {
+		setIsMenuOpen(!isMenuOpen);
 	};
-	console.log(login);
+	useEffect(() => {
+		const token = localStorage.getItem("authToken");
+		setLogin(token);
+	}, []);
 
-	let handleLogin = () => {
-		setLogin(true);
-	};
-	let closehandle = () => {
+	const logoutHandler = () => {
+		const token = localStorage.removeItem("authToken");
 		setLogin(false);
-		nav("/");
+		nav("/login");
 	};
-	let handleProduct = () => {
-		setopenProduct(!openProduct);
+	const clickHandler = () => {
+		setsupport(!support);
 	};
+	const contact = async () => {
+		const result = await authApi.contactinfo();
+		console.log(result);
 
+		setdetails(result);
+	};
+	useEffect(() => {
+		contact();
+	}, []);
 	return (
 		<>
-			<nav className="w-full sticky top-0 z-[100000] overflow-y-scroll max-h-screen  bg-white  mx-auto pb-2  px-4 shadow-md">
-				<div className="flex justify-between items-center">
-					<div className="flex items-center gap-5 ">
-						<div className="lg:hidden block">
-							<button
-								onClick={() => setIsMenuOpen(!isMenuOpen)}
-								className="text-gray-800 text-3xl py-3">
-								<span className=" transition-all duration-1000 ease-in-out ">
-									{isMenuOpen ? <FiX className="" /> : <FiMenu className="" />}
+			<div className="sticky top-0 z-[10000] shadow-lg bg-white">
+				<nav class="border-gray-200 lg:px-4 px-3 py-1">
+					<div class="  flex flex-wrap items-center justify-between ">
+						<div className="flex items-center  gap-5">
+							<div className="block lg:hidden">
+								<button onClick={Menuhandler} className="">
+									{isMenuOpen ? <RxCross2 /> : <FaBars />}
+								</button>
+							</div>
+							<div>
+								<h1 class="self-center text-primary text-3xl font-semibold whitespace-nowrap">
+									Duholiya
+								</h1>
+							</div>
+						</div>
+
+						<div className="relative flex justify-end gap-6 items-center text-lg font-medium text-gray-700">
+							<span>Sales |</span>
+							<span className="flex items-center cursor-pointer">
+								24*7 Support
+								<span
+									onClick={clickHandler}
+									className="ml-1 transition-transform duration-300 ease-in-out transform">
+									<MdOutlineKeyboardArrowDown size={22} />
 								</span>
-							</button>
-						</div>
-
-						<div className="text-3xl text-center text-primary">
-							<h1>Duholiya</h1>
-						</div>
-					</div>
-
-					<div className="flex justify-center gap-5 ">
-						<h1 className="">Sales</h1>
-						<div className="relative group  flex ">
-							<p>24 * 7 Support</p>
-
-							<span>
-								<MdOutlineKeyboardArrowDown size={30} />
 							</span>
-							<div className="hidden  group-hover:block absolute top-5 right-0 z-[1000] bg-purple-400 text-black w-52 shadow-lg rounded-lg">
-								<div className=" w-full h-14 px-3 hover:bg-slate-100 transition">
-									<Link
-										to=""
-										onClick={() => setIsMenuOpen(false)}
-										className="flex justify-center3">
-										<MdMail size={25} className="mt-5" />
-										<span className=" ml-3 mt-5 text-sm font-medium">
-											xyz@gmail.com
-										</span>
-									</Link>
-								</div>
-								<div className="flex items-center w-full h-12 px-3 hover:bg-slate-100 transition">
-									<MdContactPhone size={25} />
-									<span className="ml-3 text-sm font-medium">12345567566</span>
-								</div>
+
+							{/* Dropdown Menu */}
+							<div
+								id="dropdownNavbar"
+								className={`absolute top-10 right-0 bg-white shadow-lg rounded-lg w-60 transition-all duration-300 ease-in-out 
+    ${
+			support ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"
+		}`}>
+								<ul className="py-2">
+									{details?.data
+										?.filter((item) => item.contactType === "Support")
+										?.map((item, i) => (
+											<li
+												key={i}
+												className="px-4 py-3 flex flex-col gap-3 border-b last:border-none">
+												{/* Phone and Email Column Layout */}
+												<div className="flex flex-col gap-2">
+													{/* Phone */}
+													{Array.isArray(item.email) &&
+														item.email.map((email, idx) => (
+															<div
+																key={idx}
+																className="flex  items-center space-x-2 ">
+																<MdMail className="" />
+																<span className="">{email}</span>
+															</div>
+														))}
+
+													{/* Email */}
+													{Array.isArray(item.phone) &&
+														item.phone.map((phone, idx) => (
+															<div
+																key={idx}
+																className="flex items-center space-x-2 mt-2">
+																<MdPhone className="" />
+																<span>{phone}</span>
+															</div>
+														))}
+												</div>
+											</li>
+										))}
+								</ul>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				{/* Mobile Menu Toggle */}
-
-				<div
-					className={`sticky z-50 h-[100vh] bottom-0 top-[72px]   w-72 flex lg:justify-end lg:relative  left-0 lg:top-auto lg:h-10 lg:w-auto bg-white lg:bg-transparent lg:shadow-none   ${
-						isMenuOpen ? "block" : " hidden lg:flex"
-					}`}>
-					<div className={`flex transition-all duration-300 ease-in-out`}>
-						<ul className="flex w-full py-7 flex-col lg:flex-row lg:text-lg text-2xl gap-8 lg:items-center lg:p-0">
-							<li>
-								<NavLink
-									to="/"
-									onClick={() => {
-										setIsMenuOpen(false);
-										setopenProduct(false);
-										setLogin(false);
-									}}
-									className={({ isActive }) =>
-										`${
-											isActive ? "text-primary font-bold" : "text-black"
-										}  px-5 lg:px-0 transition`
-									}>
-									Home
-								</NavLink>
-							</li>
-
-							<div className="relative ">
-								<li className="flex items-center gap-1">
+					<div className="flex   justify-end ">
+						<div class="hidden  lg:block w-full md:w-auto" id="mobile-menu">
+							<ul class="flex-col py-1 lg:flex-row flex items-center justify-center gap-9 md:text-sm md:font-medium">
+								<li className=" ">
 									<NavLink
-										onClick={() => setIsMenuOpen(false)}
-										to="/assessment"
+										to={"/"}
+										onClick={() => {
+											setopenProduct(false);
+											setSolution(false);
+										}}
 										className={({ isActive }) =>
 											`${
-												isActive ? "text-primary font-bold" : "text-black"
-											} flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
+												isActive
+													? "text-primary font-bold"
+													: "text-[#545454] font-bold"
+											} md:bg-transparent block pl-3 pr-4 text-[18px]   md:p-0 rounded focus:outline-none`
+										}>
+										Home
+									</NavLink>
+								</li>
+								<li className="relative flex items-center  ">
+									<NavLink
+										to={"/assessment"}
+										onClick={() => {
+											setopenProduct(false);
+											setSolution(false);
+										}}
+										className={({ isActive }) =>
+											`${
+												isActive
+													? "text-primary font-bold"
+													: "text-[#545454] font-bold"
+											} md:bg-transparent flex items-center text-[18px]   pl-3 pr-4    md:p-0 rounded focus:outline-none`
 										}>
 										Product
 									</NavLink>
-									<span className="hidden lg:block cursor-pointer">
+									<span className="cursor-pointer text-[#545454]">
 										<MdOutlineKeyboardArrowDown
-											onClick={handleProduct}
+											onClick={() => {
+												setopenProduct(!openProduct);
+												setSolution(false);
+											}}
 											size={20}
 										/>
 									</span>
+
+									<div
+										id="dropdownNavbar"
+										className={`${
+											openProduct ? "block " : "hidden"
+										} bg-white  absolute top-8 text-base z-10 list-none divide-y divide-gray-100 rounded shadow w-56`}>
+										<ul className="py-1" aria-labelledby="dropdownLargeButton">
+											<li className="flex items-center  gap-2 px-3 py-3">
+												<span className="text-primary">
+													<LuNotebookPen size={20} />
+												</span>
+												<a
+													href="#"
+													className="text-[18px] text-primary block  ">
+													Assessment Platform
+												</a>
+											</li>
+											<li className="flex items-center  gap-2 px-3 py-3">
+												<span className="text-primary">
+													<MdLibraryBooks size={20} />
+												</span>
+												<NavLink
+													onClick={() => setopenProduct(false)}
+													to={"/assessmentslibrary"}
+													className="text-[18px] text-primary block ">
+													Assessment Library
+												</NavLink>
+											</li>
+											<li className="flex items-center  gap-2 px-3 py-3">
+												<span className="text-primary">
+													<TbApiApp size={20} />
+												</span>
+												<NavLink href="#" className="text-[18px] text-primary">
+													Assessment API
+												</NavLink>
+											</li>
+										</ul>
+									</div>
 								</li>
-								<div
-									className={`${
-										openProduct
-											? "absolute top-7 px-4 py-3 left-0 z-10 hidden lg:block bg-white text-primary w-64 shadow-lg rounded-lg transition-all duration-300 ease-in-out"
-											: "text-primary lg:hidden block  w-72  px-10 py-3"
-									}`}>
-									<div className="flex py-2">
-										<Link
-											onClick={() => setIsMenuOpen(false)}
-											className="flex items-center gap-2">
-											<LuNotebookPen size={20} className="" />
-											<span className="  text-lg font-medium">
-												Assessment Platform
-											</span>
-										</Link>
-									</div>
-									<div className="flex py-2">
-										<Link
-											to="/assessmentslibrary"
-											className="flex items-center gap-2">
-											<MdLibraryBooks size={20} />
-											<span className=" text-lg font-medium">
-												Assessment Library
-											</span>
-										</Link>
-									</div>
-									<div className="flex py-2">
-										<Link to="" className="flex items-center gap-2">
-											<TbApiApp size={20} />
-											<span className="text-lg font-medium">
-												Assessment API
-											</span>
-										</Link>
-									</div>
-								</div>
-							</div>
+								<li className="relative flex items-center ">
+									<NavLink
+										to={"/solution"}
+										onClick={() => {
+											setopenProduct(false);
+											setSolution(false);
+										}}
+										className={({ isActive }) =>
+											`${
+												isActive
+													? "text-primary font-bold"
+													: "text-[#545454] font-bold"
+											} md:bg-transparent flex items-center text-[18px]   pl-3 pr-4    md:p-0 rounded focus:outline-none`
+										}>
+										Services
+									</NavLink>
+									<span className="cursor-pointer text-[#545454]">
+										<MdOutlineKeyboardArrowDown
+											onClick={() => {
+												setSolution(!solution);
+												setopenProduct(false);
+											}}
+											size={20}
+										/>
+									</span>
 
-							<div className="relative group">
-								<NavLink
-									to="/solution"
-									className={({ isActive }) =>
-										`${
-											isActive ? "text-primary font-bold" : "text-black"
-										}  flex items-center gap-1 px-5 lg:px-0 cursor-pointer`
-									}>
-									Solutions
-									<MdOutlineKeyboardArrowDown size={20} />
-								</NavLink>
-								<div className="hidden group-hover:block absolute top-7 left-0 z-10 bg-white text-primary w-52 shadow-lg rounded-xl transition-all duration-300 ease-in-out">
-									<div className="flex items-center w-full h-12 px-3 rounded-lg">
-										<Link
-											to="/solution"
-											onClick={() => setIsMenuOpen(false)}
-											className="flex justify-center3">
-											<LuNotebookPen size={25} className="mt-5" />
-											<span className="ml-3 mt-5 text-sm font-medium">
-												Corporate
-											</span>
-										</Link>
+									<div
+										className={`${
+											solution ? "block " : "hidden"
+										} bg-white  absolute top-8 text-base z-10 list-none divide-y divide-gray-100 rounded shadow w-56`}>
+										<ul className="py-1" aria-labelledby="dropdownLargeButton">
+											<li className="flex items-center  gap-2 px-3 py-3">
+												<span className="text-primary">
+													<MdCorporateFare size={20} />
+												</span>
+												<a href="#" className="text-[18px] text-primary   ">
+													Corporate
+												</a>
+											</li>
+											<li className="flex items-center  gap-2 px-3 py-3">
+												<span className="text-primary">
+													<HiAcademicCap size={20} />
+												</span>
+												<NavLink
+													onClick={() => setopenProduct(false)}
+													className="text-[18px] text-primary  ">
+													Academics
+												</NavLink>
+											</li>
+										</ul>
 									</div>
-									<div className="flex items-center w-full h-12 px-3">
-										<HiAcademicCap size={25} />
-										<span className="ml-3 text-sm font-medium">Academics</span>
-									</div>
-								</div>
-							</div>
-
-							<li>
-								<NavLink
-									to={"/contact"}
-									className={({ isActive }) =>
-										`${
-											isActive ? "text-primary font-bold" : "text-black"
-										}  cursor-pointer px-5 lg:px-0`
-									}>
-									Contact
-								</NavLink>
-							</li>
-
-							<li className="px-5 lg:px-0">
-								<NavLink to={"/login"}>
-									<button className="px-3 py-2 lg:px-4 lg:py-2 bg-transparent text-black border-2 rounded-md hover:bg-black hover:text-white transition">
-										Login
-									</button>
-								</NavLink>
-							</li>
-
-							<li className="px-5 lg:px-0">
-								<NavLink
-									to={"/requestdemo"}
-									className={({ isActive }) =>
-										`${
-											isActive ? "text-primary font-bold" : "text-black"
-										}  cursor-pointer px-5 lg:px-0`
-									}>
-									<button className="px-6 py-1 border-2 hidden lg:block border-black  rounded-full transition">
+								</li>
+								<li className="">
+									<NavLink
+										to={"/contact"}
+										onClick={() => {
+											setopenProduct(false);
+											setSolution(false);
+										}}
+										className={({ isActive }) =>
+											`${
+												isActive
+													? "text-primary font-bold"
+													: "text-[#545454] font-bold"
+											} md:bg-transparent block pl-3 pr-4 text-[18px]   md:p-0 rounded focus:outline-none`
+										}>
+										Contact
+									</NavLink>
+								</li>
+								<li className=" ">
+									{login ? (
+										<button
+											onClick={logoutHandler}
+											className=" text-black rounded-lg border-2 border-black px-2 py-2">
+											Logout
+										</button>
+									) : (
+										<NavLink
+											to={"/login"}
+											onClick={() => {
+												setopenProduct(false);
+												setSolution(false);
+											}}
+											className={({ isActive }) =>
+												`${
+													isActive
+														? "text-primary font-bold"
+														: "text-[#545454] font-bold"
+												} md:bg-transparent block pl-3 pr-4 text-[18px]   md:p-0 rounded focus:outline-none`
+											}>
+											Login
+										</NavLink>
+									)}
+								</li>
+								<li className="rounded-full border-2 border-black px-5 ">
+									<NavLink
+										to={"/requestdemo"}
+										onClick={() => {
+											setopenProduct(false);
+											setSolution(false);
+										}}
+										className={({ isActive }) =>
+											`${
+												isActive
+													? "text-primary font-bold"
+													: "text-[#545454] font-bold"
+											} md:bg-transparent block py-1 text-[18px]    rounded focus:outline-none`
+										}>
 										Request A Demo
-									</button>
-								</NavLink>
-							</li>
-						</ul>
+									</NavLink>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div>
+					{isMenuOpen && (
+						<motion.div
+							initial={{ opacity: 0, translateX: -60 }}
+							whileInView={{ opacity: 1, translateX: 0 }}
+							transition={{
+								duration: 0.2,
+							}}
+							className="flex py-4 px-3 z-20 fixed left-0  w-9/2 shadow-2xl h-screen top-11 bg-white  ">
+							<div>
+								<div class=" w-full ">
+									<ul class="flex-col py-1  flex gap-9 ">
+										<li className=" ">
+											<NavLink
+												to={"/"}
+												onClick={() => {
+													setopenProduct(false);
+													setSolution(false);
+													setIsMenuOpen(false);
+												}}
+												className={({ isActive }) =>
+													`${
+														isActive
+															? "text-primary font-bold"
+															: "text-[#545454] font-bold"
+													} md:bg-transparent block pl-3 pr-4 text-[18px]   md:p-0 rounded focus:outline-none`
+												}>
+												Home
+											</NavLink>
+										</li>
+										<li className="relative flex items-center  ">
+											<NavLink
+												to={"/assessment"}
+												onClick={() => {
+													setopenProduct(false);
+													setSolution(false);
+													setIsMenuOpen(false);
+												}}
+												className={({ isActive }) =>
+													`${
+														isActive
+															? "text-primary font-bold"
+															: "text-[#545454] font-bold"
+													} md:bg-transparent flex items-center text-[18px]   pl-3 pr-4    md:p-0 rounded focus:outline-none`
+												}>
+												Product
+											</NavLink>
+											<span className="cursor-pointer text-[#545454]">
+												<MdOutlineKeyboardArrowDown
+													onClick={() => {
+														setopenProduct(!openProduct);
+														setSolution(false);
+													}}
+													size={20}
+												/>
+											</span>
 
-				{login && (
-					<div className="absolute top-28 left-0 right-0 bottom-0">
-						<LoginPopUp closehandle={closehandle} />
-					</div>
-				)}
-				{contact && (
-					<div className="absolute top-28  left-0 right-0 bottom-0">
-						<Contacts handlerClose={handlerClose} />
-					</div>
-				)}
-			</nav>
+											<div
+												className={`${
+													openProduct ? "block " : "hidden"
+												} bg-white  absolute top-8 text-base z-10 list-none divide-y divide-gray-100 rounded shadow w-40`}>
+												<ul
+													className="py-1"
+													aria-labelledby="dropdownLargeButton">
+													<li className="flex items-center  gap-2 px-3 py-3">
+														<span className="text-primary">
+															<LuNotebookPen size={15} />
+														</span>
+														<a
+															href="#"
+															className="text-[12px] text-primary block  ">
+															Assessment Platform
+														</a>
+													</li>
+													<li className="flex items-center  gap-2 px-3 py-3">
+														<span className="text-primary">
+															<MdLibraryBooks size={15} />
+														</span>
+														<NavLink
+															onClick={() => {
+																setopenProduct(false);
+																setIsMenuOpen(false);
+															}}
+															to={"/assessmentslibrary"}
+															className="text-[12px] text-primary block ">
+															Assessment Library
+														</NavLink>
+													</li>
+													<li className="flex items-center  gap-2 px-3 py-3">
+														<span className="text-primary">
+															<TbApiApp size={15} />
+														</span>
+														<NavLink
+															href="#"
+															className="text-[12px] text-primary">
+															Assessment API
+														</NavLink>
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li className="relative flex items-center ">
+											<NavLink
+												to={"/solution"}
+												onClick={() => {
+													setopenProduct(false);
+													setSolution(false);
+													setIsMenuOpen(false);
+												}}
+												className={({ isActive }) =>
+													`${
+														isActive
+															? "text-primary font-bold"
+															: "text-[#545454] font-bold"
+													} md:bg-transparent flex items-center text-[18px]   pl-3 pr-4    md:p-0 rounded focus:outline-none`
+												}>
+												Services
+											</NavLink>
+											<span className="cursor-pointer text-[#545454]">
+												<MdOutlineKeyboardArrowDown
+													onClick={() => {
+														setSolution(!solution);
+														setopenProduct(false);
+													}}
+													size={20}
+												/>
+											</span>
+
+											<div
+												className={`${
+													solution ? "block " : "hidden"
+												} bg-white  absolute top-8 text-base z-10 list-none divide-y divide-gray-100 rounded shadow w-40`}>
+												<ul
+													className="py-1"
+													aria-labelledby="dropdownLargeButton">
+													<li className="flex items-center  gap-2 px-3 py-3">
+														<span className="text-primary">
+															<MdCorporateFare size={15} />
+														</span>
+														<a href="#" className="text-[12px] text-primary   ">
+															Corporate
+														</a>
+													</li>
+													<li className="flex items-center  gap-2 px-3 py-3">
+														<span className="text-primary">
+															<HiAcademicCap size={15} />
+														</span>
+														<NavLink
+															onClick={() => setopenProduct(false)}
+															className="text-[12px] text-primary  ">
+															Academics
+														</NavLink>
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li className="">
+											<NavLink
+												to={"/contact"}
+												onClick={() => {
+													setopenProduct(false);
+													setSolution(false);
+													setIsMenuOpen(false);
+												}}
+												className={({ isActive }) =>
+													`${
+														isActive
+															? "text-primary font-bold"
+															: "text-[#545454] font-bold"
+													} md:bg-transparent block pl-3 pr-4 text-[18px]   md:p-0 rounded focus:outline-none`
+												}>
+												Contact
+											</NavLink>
+										</li>
+										<li className=" ">
+											{login ? (
+												<button
+													onClick={logoutHandler}
+													className="px-8   text-black rounded-lg border-2 border-black py-2">
+													Logout
+												</button>
+											) : (
+												<NavLink
+													to={"/login"}
+													onClick={() => {
+														setopenProduct(false);
+														setSolution(false);
+														setIsMenuOpen(false);
+													}}
+													className={({ isActive }) =>
+														`${
+															isActive
+																? "text-primary font-bold"
+																: "text-[#545454] font-bold"
+														} md:bg-transparent block pl-3 pr-4 text-[18px]   md:p-0 rounded focus:outline-none`
+													}>
+													Login
+												</NavLink>
+											)}
+										</li>
+										<li className="rounded-full border-2 border-black  ">
+											<NavLink
+												to={"/requestdemo"}
+												onClick={() => {
+													setopenProduct(false);
+													setSolution(false);
+													setIsMenuOpen(false);
+												}}
+												className={({ isActive }) =>
+													`${
+														isActive
+															? "text-primary font-bold"
+															: "text-[#545454] font-bold"
+													} md:bg-transparent block py-1 text-[18px] px-8    rounded focus:outline-none`
+												}>
+												Request A Demo
+											</NavLink>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</motion.div>
+					)}
+				</nav>
+			</div>
 		</>
 	);
 };

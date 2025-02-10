@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { AssessmentData } from "../../../constant/AssessmentData/AssessmentData";
 import { useParams } from "react-router-dom";
-import Card from "../../../Component/dashboard/Card";
+
 import UserSideBar from "../../../Layout/UserSideBar/UserSideBar";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,20 +11,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import Button from "@mui/material/Button";
-import { MdOutlineCheck } from "react-icons/md";
-import InputBase from "@mui/material/InputBase";
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
-import { RxCross2 } from "react-icons/rx";
-
-import SearchIcon from "@mui/icons-material/Search";
-import { FaPlus } from "react-icons/fa";
-
 import { Switch } from "@mui/material";
 import { Logo } from "../../../Component/Logo/Logo";
+import Tanent from "../../../Component/dashboard/Tanent/Tanent";
+import SearchAndAdd from "../../../Component/dashboard/Tanent/SearchAndAdd";
+import InvitationPopUp from "./InvitationPopUp";
 
 const InvitationData = () => {
+	const [invitation, setInvitaion] = useState(false);
 	const { name } = useParams();
 
 	const filtername = AssessmentData.filter((ele) => ele.name == name);
@@ -33,150 +27,150 @@ const InvitationData = () => {
 
 	return (
 		<>
-			<Card>
-				<UserSideBar />
-				<div className=" w-full max-h-screen overflow-y-scroll px-3 py-5 border-l-2 border-blue-600 bg-white ">
-					<div className="px-4">
-						<h1 className="font-bold text-lg">Invitation Code Module</h1>
-						<p>
-							Manage and organize group effortlessly. Create, Join or maderate
-							position based on your preference and objectives.
-						</p>
-					</div>
-					<div className="flex items-center justify-between px-4 my-5">
-						<Paper
-							component="form"
-							sx={{
-								border: 2,
-								display: "flex",
-								alignItems: "center",
-								minWidth: 180,
-								width: 800,
-							}}>
-							<InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search By Name" />
-							<IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-								<SearchIcon />
-							</IconButton>
-						</Paper>
-						<Stack
-							spacing={1}
-							direction="row"
-							className="flex items-center text-white border-2 border-black rounded-lg bg-[#003262] lg:ml-10 ml-2 px-4 ">
-							<span>
-								<FaPlus size={20} />
-							</span>
-							<Button
-								sx={{
-									fontSize: "18px",
-									color: "white",
-								}}>
-								Add
-							</Button>
-						</Stack>
-					</div>
-					<div className="px-4">
-						<TableContainer component={Paper}>
-							<Table
-								sx={{
-									minWidth: 550,
-								}}
-								aria-label="simple table">
-								<TableHead>
-									<TableRow
-										sx={{
-											textAlign: "center",
-										}}>
-										<TableCell
-											sx={{
-												fontSize: "18px",
-											}}>
-											Codes
-										</TableCell>
-										<TableCell
-											sx={{
-												fontSize: "18px",
-												textAlign: "center",
-												whiteSpace: "nowrap",
-											}}>
-											Max Invitaions
-										</TableCell>
-										<TableCell
-											sx={{
-												fontSize: "18px",
-												textAlign: "center",
-												whiteSpace: "nowrap",
-											}}>
-											Expiry
-										</TableCell>
-										<TableCell
-											sx={{
-												fontSize: "18px",
-												textAlign: "center",
-												whiteSpace: "nowrap",
-											}}>
-											Status
-										</TableCell>
-
-										<TableCell
-											sx={{
-												fontSize: "18px",
-												textAlign: "center",
-												whiteSpace: "nowrap",
-											}}></TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{invitationdata.map((row, i) => (
+			<Tanent>
+				<div className="grid grid-cols-12 bg-white">
+					<UserSideBar />
+					<div className=" col-span-10 px-3 py-5 border-l-2 relative border-blue-600">
+						<div className="px-4">
+							<h1 className="font-bold text-sm lg:text-[16px] inter  text-[#3A3A3A] text-justify">
+								Invitation Code Module
+							</h1>
+							<p className="text-justify text-xs inter  text-[#545454]">
+								Manage and organize group effortlessly. Create, Join or maderate
+								position based on your preference and objectives.
+							</p>
+						</div>
+						<SearchAndAdd setstateChange={setInvitaion} />
+						<div className="absolute z-10 top-[8%] left-1/2 transform -translate-x-1/2 flex justify-center px-4 w-full">
+							{invitation && <InvitationPopUp setInvitaion={setInvitaion} />}
+						</div>
+						<div className="px-4">
+							<TableContainer component={Paper}>
+								<Table
+									sx={{
+										minWidth: 550,
+									}}
+									aria-label="simple table">
+									<TableHead>
 										<TableRow
-											key={i}
 											sx={{
 												textAlign: "center",
 											}}>
 											<TableCell
-												component="th"
-												scope="row"
 												sx={{
-													fontSize: "16px",
-													whiteSpace: "nowrap",
+													fontSize: "14px",
+													fontFamily: "Manrope",
+													fontWeight: "bold",
+													color: "#003262",
 												}}>
-												{row.code}
+												Codes
 											</TableCell>
 											<TableCell
 												sx={{
-													fontSize: "16px",
+													fontSize: "14px",
 													textAlign: "center",
 													whiteSpace: "nowrap",
+													fontFamily: "Manrope",
+													fontWeight: "bold",
+													color: "#003262",
 												}}>
-												{row.maxinvitation}
+												Max Invitaions
 											</TableCell>
 											<TableCell
 												sx={{
-													fontSize: "16px",
+													fontSize: "14px",
 													textAlign: "center",
 													whiteSpace: "nowrap",
+													fontFamily: "Manrope",
+													fontWeight: "bold",
+													color: "#003262",
 												}}>
-												{row.expiry}
+												Expiry
 											</TableCell>
-											<Switch
-												checked={row.active}
+											<TableCell
 												sx={{
-													" & .css-161ms7l-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked":
-														{
-															color: "#5bc17f",
-														},
-												}}
-											/>
-											<TableCell sx={{ whiteSpace: "nowrap" }}>
-												{Logo(row.edit, "Green")}
+													fontSize: "14px",
+													textAlign: "center",
+													whiteSpace: "nowrap",
+													fontFamily: "Manrope",
+													fontWeight: "bold",
+													color: "#003262",
+												}}>
+												Status
 											</TableCell>
+
+											<TableCell
+												sx={{
+													fontSize: "14px",
+													textAlign: "center",
+													whiteSpace: "nowrap",
+													fontFamily: "Manrope",
+													fontWeight: "bold",
+													color: "#003262",
+												}}></TableCell>
 										</TableRow>
-									))}
-								</TableBody>
-							</Table>
-						</TableContainer>
+									</TableHead>
+									<TableBody>
+										{invitationdata.map((row, i) => (
+											<TableRow
+												key={i}
+												sx={{
+													textAlign: "center",
+												}}>
+												<TableCell
+													component="th"
+													scope="row"
+													sx={{
+														fontSize: "16px",
+														whiteSpace: "nowrap",
+														fontFamily: "Manrope",
+														fontWeight: "bold",
+														textAlign:"center",
+												
+													}}>
+													{row.code}
+												</TableCell>
+												<TableCell
+													sx={{
+														fontSize: "16px",
+														textAlign: "center",
+														whiteSpace: "nowrap",
+														fontFamily: "Manrope",
+														fontWeight: "bold",
+													}}>
+													{row.maxinvitation}
+												</TableCell>
+												<TableCell
+													sx={{
+														fontSize: "16px",
+														textAlign: "center",
+														whiteSpace: "nowrap",
+														fontFamily: "Manrope",
+														fontWeight: "bold",
+													}}>
+													{row.expiry}
+												</TableCell>
+												<Switch
+													checked={row.active}
+													sx={{
+														" & .css-161ms7l-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked":
+															{
+																color: "#5bc17f",
+															},
+													}}
+												/>
+												<TableCell sx={{ whiteSpace: "nowrap" }}>
+													{Logo(row.edit, "Green")}
+												</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</TableContainer>
+						</div>
 					</div>
 				</div>
-			</Card>
+			</Tanent>
 		</>
 	);
 };

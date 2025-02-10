@@ -41,7 +41,7 @@ const AssessmentAddress = () => {
 
 	return (
 		<>
-			<div className="my-8 rounded-lg shadow-xl shadow-gray-400">
+			<div className="my-8 rounded-lg shadow-xl inter shadow-gray-400">
 				<div className="flex justify-between items-center px-4 py-3 border-b-2 border-gray-500">
 					<button
 						className="text-[#003262]  font-bold text-lg flex items-center gap-2"
@@ -187,7 +187,7 @@ const AssessmentAddress = () => {
 					</form>
 				</div>
 			</div>
-			<div className="my-8 px-5 md:px-20 py-5 bg-zinc-200 rounded-lg shadow-xl shadow-gray-400">
+			<div className="my-8 px-5 inter md:px-20 py-5 bg-zinc-200 rounded-lg shadow-xl shadow-gray-400">
 				<h1 className="text-2xl font-bold text-center mb-5">Save Address</h1>
 				{subData.map((item, i) => (
 					<div

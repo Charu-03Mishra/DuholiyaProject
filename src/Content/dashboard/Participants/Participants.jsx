@@ -9,11 +9,12 @@ const Participants = () => {
 	return (
 		<div>
 			<InstructionHeader />
-			<div className="flex">
+			<div className="grid grid-cols-12 ">
 				<ParticipantsSideNavBar
 					activeTab={activeTab}
 					setActiveTab={setActiveTab}
 				/>
+
 				{activeTab === "Group" && <Group />}
 				{activeTab === "individual" && <Individuals />}
 			</div>

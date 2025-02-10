@@ -3,7 +3,7 @@ import { CiCircleCheck } from "react-icons/ci";
 
 export const CorporateData = [
 	{
-		id: 1,
+		id: "9289c385-2943-454c-b44d-1d8e5b8dadf5",
 		learning: {
 			image: "65e6424496c0d9f67dc12039_virtual teaching.webp",
 			heading: "Flexible Exam Creation",
@@ -25,7 +25,7 @@ export const CorporateData = [
 			],
 		},
 		video: {
-			id: 1,
+			id: "9289c385-2943-454c-b44d-1d8e5b8dadf5",
 			image: "incvid-carousel.webp",
 			heading: "Video Responses :Modern Approach",
 			description:
@@ -46,7 +46,7 @@ export const CorporateData = [
 			],
 		},
 		multimedia: {
-			id: 1,
+			id: "9289c385-2943-454c-b44d-1d8e5b8dadf5",
 			image: "multimedia_logo1.png",
 			heading: "Multimedia Components",
 			description:

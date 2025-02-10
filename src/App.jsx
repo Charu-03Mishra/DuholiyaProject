@@ -10,6 +10,7 @@ import SideNavBarResult from "./Layout/SideNavBarResult/SideNavBarResult";
 const App = () => {
 	const path = useLocation();
 	const pathname = path.pathname;
+	const { name } = useParams();
 
 	return (
 		<>

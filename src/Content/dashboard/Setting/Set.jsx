@@ -22,7 +22,7 @@ const Set = () => {
 	const activeSet = AssessmentData.find((data) => data.name == "set");
 	return (
 		<>
-			<div className=" w-full overflow-y-scroll lg:px-3 py-5 border-l-2 border-blue-600  ">
+			<div className=" col-span-10  lg:px-3 py-5 border-l-2 border-blue-600  ">
 				<div className="flex lg:justify-end items-center mb-5">
 					<div className="bg-primary relative rounded-lg flex  gap-2 text-white items-center sm:px-3 sm:py-2 px-5 py-3 mx-5 ">
 						<span>
@@ -32,7 +32,9 @@ const Set = () => {
 								onClick={showhandler}
 							/>
 						</span>
-						<button className="text-base  sm:text-lg" onClick={showhandler}>
+						<button
+							className="text-base  text-[16px] Manrope"
+							onClick={showhandler}>
 							Add Version
 						</button>
 					</div>
@@ -52,41 +54,55 @@ const Set = () => {
 									}}>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
+											textAlign:"center",
+												
 										}}>
 										Code
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Questions
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Reviewed
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Unreviewed
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}>
 										Status
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "18px",
+											fontFamily: "Manrope",
+											color: "#003262",
+											fontSize: "14px",
 											textAlign: "center",
 										}}></TableCell>
 								</TableRow>
@@ -103,6 +119,10 @@ const Set = () => {
 											scope="row"
 											sx={{
 												fontSize: "16px",
+												fontFamily: "Manrope",
+												color: "#191D23",
+												textAlign:"center",
+												
 											}}>
 											{row.code}
 										</TableCell>
@@ -110,6 +130,9 @@ const Set = () => {
 											sx={{
 												fontSize: "16px",
 												textAlign: "center",
+												
+												fontFamily: "Manrope",
+												color: "#191D23",
 											}}>
 											{row.question}
 										</TableCell>
@@ -117,6 +140,10 @@ const Set = () => {
 											sx={{
 												fontSize: "16px",
 												textAlign: "center",
+												
+												fontFamily: "Manrope",
+												color: "#0B87AC",
+												fontWeight: "bold",
 											}}>
 											{row.reviewed}
 										</TableCell>
@@ -124,6 +151,10 @@ const Set = () => {
 											sx={{
 												fontSize: "16px",
 												textAlign: "center",
+												
+												fontFamily: "Manrope",
+												color: "#191D23",
+												fontWeight: "bold",
 											}}>
 											{row.unreviewed}
 										</TableCell>
@@ -131,6 +162,10 @@ const Set = () => {
 											sx={{
 												fontSize: "16px",
 												textAlign: "center",
+												
+												fontFamily: "Manrope",
+												color: "#191D23",
+												fontWeight: "bold",
 											}}>
 											{row.status}
 										</TableCell>

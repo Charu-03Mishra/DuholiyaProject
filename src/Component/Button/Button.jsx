@@ -1,14 +1,14 @@
 import React from "react";
+import { FaPlus } from "react-icons/fa";
 
-const Button = ({ className, text, onClick, icon1, icon2 }) => {
- 
+const Button = () => {
 	return (
-		<div>
-			<button
-				className={`${className} flex justify-center border rounded-full my-2 mt-14  items-center gap-4 px-4 py-2`}
-				onClick={onClick}>
-				{icon1}
-				{text} {icon2}
+		<div className="flex  items-center justify-center mx-3 my-2  lg:py-2 py-2  text-white   rounded-lg bg-secondary  lg:px-5 ">
+			<button className="flex items-center gap-3 Inter " onClick={() => {}}>
+				<span>
+					<FaPlus size={15} />
+				</span>
+				Add
 			</button>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -18,151 +18,187 @@ import { Logo } from "../../../Component/Logo/Logo";
 import { Switch } from "@mui/material";
 import { RxCross1 } from "react-icons/rx";
 import { HiViewfinderCircle } from "react-icons/hi2";
+import GroupPopUp from "./GroupPopUp";
 const Group = () => {
+	const [click, setClick] = useState();
 	const GroupData = AssessmentData.find((data) => data.name == "Group");
 	console.log(GroupData.group);
+	const clickHAndler = () => {
+		setClick(true);
+	};
 
 	return (
-		<div className=" w-full h-full  max-h-screen overflow-y-scroll lg:px-3 py-5 border-l-2 border-blue-600  ">
-			<div className="flex items-center justify-between px-4 my-5">
-				<Paper
-					component="form"
-					sx={{
-						border: 2,
-						display: "flex",
-						alignItems: "center",
-						minWidth: 180,
-						width: 800,
-					}}>
-					<InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search By Name" />
-					<IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-						<SearchIcon />
-					</IconButton>
-				</Paper>
-				<Stack
-					spacing={1}
-					direction="row"
-					className="flex items-center text-white border-2 border-black rounded-lg bg-[#003262] lg:ml-10 ml-2 px-4 ">
-					<span>
-						<FaPlus size={20} />
-					</span>
-					<Button
+		<div className="col-span-10">
+			<div className=" relative lg:px-3 py-5 border-l-2 border-blue-600  ">
+				<div className="flex items-center justify-between px-4 my-5">
+					<Paper
+						component="form"
 						sx={{
-							fontSize: "18px",
-							color: "white",
+							border: 2,
+							display: "flex",
+							alignItems: "center",
+							minWidth: 180,
+							width: 800,
 						}}>
-						Add
-					</Button>
-				</Stack>
-			</div>
-			<div className="px-4">
-				<TableContainer component={Paper}>
-					<Table
-						sx={{
-							minWidth: 550,
-						}}
-						aria-label="simple table">
-						<TableHead>
-							<TableRow
-								sx={{
-									textAlign: "center",
-								}}>
-								<TableCell
-									sx={{
-										fontSize: "18px",
-									}}>
-									Name
-								</TableCell>
-								<TableCell
-									sx={{
-										fontSize: "18px",
-										textAlign: "center",
-									}}>
-									Tags
-								</TableCell>
-								<TableCell
-									sx={{
-										fontSize: "18px",
-										textAlign: "center",
-									}}>
-									Participants
-								</TableCell>
-								<TableCell
-									sx={{
-										fontSize: "18px",
-										textAlign: "center",
-									}}>
-									Status
-								</TableCell>
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{GroupData?.group?.map((row, i) => (
+						<InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search By Name" />
+						<IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+							<SearchIcon />
+						</IconButton>
+					</Paper>
+					<Stack
+						spacing={1}
+						direction="row"
+						className="flex items-center text-white border-2 border-black rounded-lg bg-[#003262] lg:ml-10 ml-2 px-4 ">
+						<span>
+							<FaPlus onClick={clickHAndler} size={20} />
+						</span>
+						<Button
+							onClick={clickHAndler}
+							sx={{
+								fontSize: "18px",
+								color: "white",
+							}}>
+							Add
+						</Button>
+					</Stack>
+				</div>
+				<div className="absolute z-10 top-[8%] left-1/2 transform -translate-x-1/2 flex justify-center px-4 w-full">
+					{click && <GroupPopUp setClick={setClick} />}
+				</div>
+				<div className="px-4">
+					<TableContainer component={Paper}>
+						<Table
+							sx={{
+								minWidth: 550,
+							}}
+							aria-label="simple table">
+							<TableHead>
 								<TableRow
-									key={i}
 									sx={{
+										fontSize: "14px",
+										fontWeight: "bold",
+										color: "#003262",
 										textAlign: "center",
+										fontStyle: "Manrope",
 									}}>
 									<TableCell
-										component="th"
-										scope="row"
 										sx={{
-											fontSize: "16px",
+											fontSize: "14px",
+											textAlign: "center",
+											fontFamily: "Manrope",
+											fontWeight: "bold",
+											color: "#003262",
 										}}>
-										{row.name}
+										Name
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "16px",
+											fontSize: "14px",
+											fontWeight: "bold",
+											color: "#003262",
 											textAlign: "center",
-											display: "flex",
-											alignItems: "center",
-											justifyContent: "center",
-											gap: "7px",
+											fontStyle: "Manrope",
 										}}>
-										<div className="border-2 flex items-center border-[#003262] rounded-md px-2">
-											{row.tag}{" "}
-											<span>
-												<RxCross1 size={15} className="text-[#003262]" />
-											</span>
-										</div>
-										<div className="border-2 flex items-center border-[#003262] rounded-md px-2">
-											{row.tag}
-											<span>
-												<RxCross1 size={15} className="text-[#003262]" />
-											</span>
-										</div>
-										<div className="border-2 flex items-center border-[#003262] rounded-md px-2">
-											{row.tag}
-											<span>
-												<RxCross1 size={15} className="text-[#003262]" />
-											</span>
-										</div>
+										Tags
 									</TableCell>
 									<TableCell
 										sx={{
-											fontSize: "16px",
+											fontSize: "14px",
+											fontWeight: "bold",
+											color: "#003262",
 											textAlign: "center",
+											fontStyle: "Manrope",
 										}}>
-										<div className="flex justify-center items-center gap-2 py-1 rounded-lg bg-[#003262] text-white">
-											<HiViewfinderCircle size={20} />
-											<span>{row.participants}</span>
-										</div>
+										Participants
 									</TableCell>
-									<Switch
-										checked={row.active}
+									<TableCell
 										sx={{
-											" & .css-161ms7l-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked":
-												{
-													color: "#5bc17f",
-												},
-										}}
-									/>
+											fontSize: "14px",
+											fontWeight: "bold",
+											color: "#003262",
+											textAlign: "center",
+											fontStyle: "Manrope",
+										}}>
+										Status
+									</TableCell>
 								</TableRow>
-							))}
-						</TableBody>
-					</Table>
-				</TableContainer>
+							</TableHead>
+							<TableBody>
+								{GroupData?.group?.map((row, i) => (
+									<TableRow
+										key={i}
+										sx={{
+											textAlign: "center",
+										}}>
+										<TableCell
+											component="th"
+											scope="row"
+											sx={{
+												fontSize: "16px",
+												fontFamily: "Manrope",
+												fontWeight: "bold",
+												textAlign: "center",
+											}}>
+											{row.name}
+										</TableCell>
+										<TableCell
+											sx={{
+												fontSize: "16px",
+												fontFamily: "Manrope",
+												fontWeight: "bold",
+												textAlign: "center",
+												display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												gap: "7px",
+											}}>
+											<div className="border-2 text-[9.32px] flex items-center border-[#003262] rounded-md px-2">
+												{row.tag}{" "}
+												<span>
+													<RxCross1 size={10} className="text-[#003262]" />
+												</span>
+											</div>
+											<div className="border-2 text-[9.32px] flex items-center border-[#003262] rounded-md px-2">
+												{row.tag}
+												<span>
+													<RxCross1 size={10} className="text-[#003262]" />
+												</span>
+											</div>
+											<div className="border-2 text-[9.32px] flex items-center border-[#003262] rounded-md px-2">
+												{row.tag}
+												<span>
+													<RxCross1 size={10} className="text-[#003262]" />
+												</span>
+											</div>
+										</TableCell>
+										<TableCell
+											sx={{
+												fontFamily: "Manrope",
+												fontWeight: "bold",
+												textAlign: "center",
+												
+												paddingLeft:"80px"
+											}}>
+											<div className="flex w-24 justify-center text-[12.5px]  items-center gap-2 py-1 rounded-lg bg-[#003262] text-white">
+												<HiViewfinderCircle size={10} />
+												<span>{row.participants}</span>
+											</div>
+										</TableCell>
+										<Switch
+											checked={row.active}
+											sx={{
+												" & .css-161ms7l-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked":
+													{
+														color: "#5bc17f",
+													},
+											}}
+										/>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</TableContainer>
+				</div>
 			</div>
 		</div>
 	);

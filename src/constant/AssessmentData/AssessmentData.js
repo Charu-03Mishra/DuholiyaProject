@@ -594,7 +594,7 @@ export const AssessmentData = [
 				id: 1,
 				version: 1.2,
 				setcorrection: "Explicit",
-				status: "Draft",
+				status: "Publisht",
 				edit: CiEdit,
 				publish: "Publish",
 				switch: "Switch",
@@ -605,14 +605,14 @@ export const AssessmentData = [
 				setcorrection: "Automatic",
 				status: "Draft",
 				edit: CiEdit,
-				publish: "Darft",
+				publish: "Publish",
 				switch: "Switch",
 			},
 			{
 				id: 3,
 				version: 1.2,
 				setcorrection: "Automatic",
-				status: "Draft",
+				status: "Publish",
 				edit: CiEdit,
 				publish: "Publish",
 				switch: "Switch",
@@ -623,14 +623,14 @@ export const AssessmentData = [
 				setcorrection: "Automatic",
 				status: "Draft",
 				edit: CiEdit,
-				publish: "Draft",
+				publish: "Publish",
 				switch: "Switch",
 			},
 			{
 				id: 5,
 				version: 1.2,
 				setcorrection: "Automatic",
-				status: "Draft",
+				status: "Publish",
 				edit: CiEdit,
 				publish: "Publish",
 				switch: "Switch",
@@ -641,7 +641,7 @@ export const AssessmentData = [
 				setcorrection: "Automatic",
 				status: "Draft",
 				edit: CiEdit,
-				publish: "Draft",
+				publish: "Publish",
 				switch: "Switch",
 			},
 		],
@@ -800,6 +800,7 @@ export const AssessmentData = [
 				untill: "12-july, 12 AM",
 				status: "Active",
 				edit: CiEdit,
+				live:"-"
 			},
 			{
 				id: 3,
@@ -809,6 +810,7 @@ export const AssessmentData = [
 				untill: "12-july, 12 AM",
 				status: "Active",
 				edit: CiEdit,
+				live:"-"
 			},
 			{
 				id: 4,
@@ -818,6 +820,7 @@ export const AssessmentData = [
 				untill: "12-july, 12 AM",
 				status: "Active",
 				edit: CiEdit,
+				live:"-"
 			},
 			{
 				id: 5,
@@ -827,6 +830,7 @@ export const AssessmentData = [
 				untill: "12-july, 12 AM",
 				status: "Active",
 				edit: CiEdit,
+				live:"-"
 			},
 		],
 	},
